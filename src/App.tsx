@@ -1,18 +1,16 @@
 import React from 'react';
 import logo from './logo512.png';
 import './App.css';
+import Technologies from "./Technologies";
+import Header from "./Header";
+
 
 function App() {
     return (
-        <div className="App">
-            <ul>
-                <li>css</li>
-                <li>html</li>
-                <li>js</li>
-                <li>react</li>
-            </ul>
+        <div>
+            <Header/>
+            <Technologies/>
         </div>
     );
 }
-
 export default App;
