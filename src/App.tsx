@@ -5,40 +5,59 @@ import './App.css';
 function App() {
     return (
         <div>
-            This is component APP
+            <AppTitle/>
             <Rating/>
             <Accordion/>
+            <Rating/>
         </div>
     );
 }
-function Star(){
-    return(
+
+function Star() {
+    console.log("star rendered")
+    return (
         <div>star</div>
     )
 }
 
+function AppTitle() {
+    return <>This is component APP</>
+}
+
 function Rating() {
     return (
+        <>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+            <Star/>
+        </>
+    )
+}
+
+function Accordion() {
+    return (
         <div>
-            <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
-            <Star/>
+            <AccordionTitle/>
+            <AccordionBody/>
         </div>
     )
 }
 
-function  Accordion(){
-    return(
-        <div>
-            <h3>Menu</h3>
-            <ul>
-                <li>1</li>
-                <li>2</li>
-                <li>3</li>
-            </ul>
-        </div>
+function AccordionTitle() {
+    console.log("Accordion title is rendering...")
+    return <h3>Menu</h3>
+}
+
+function AccordionBody() {
+    console.log("Accordion body is rendering...")
+    return (
+        <ul>
+            <li>1</li>
+            <li>2</li>
+            <li>3</li>
+        </ul>
     )
 }
 
