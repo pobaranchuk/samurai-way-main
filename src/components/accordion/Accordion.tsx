@@ -1,9 +1,9 @@
 import React from "react";
 
-function Accordion() {
+function Accordion(props : any) {
     return (
         <div>
-            <AccordionTitle/>
+            <AccordionTitle />
             <AccordionBody/>
         </div>
     )
