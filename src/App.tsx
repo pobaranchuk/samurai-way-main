@@ -1,33 +1,51 @@
 import React from 'react';
 import './App.css';
-import Accordion from "./components/accordion/Accordion";
-import {Rating} from "./components/rating/Rating";
-
-
 function App() {
     return (
-        <div>
-            <PageTitle title={ "This is component APP!!!"}/>
-            <PageTitle title={"My friends"}/>
-            Article 1
-            <Rating value={3}/>
-            <Accordion titleValue={"Menu 111"} collapsed = {true}/>
-            <Accordion titleValue={"Users"} collapsed = {false}/>
-{/*            Article 2
-            <Rating value={0}/>
-            <Rating value={1}/>
-            <Rating value={2}/>
-            <Rating value={3}/>
-            <Rating value={4}/>
-            <Rating value={5}/>*/}
+        <div className={"app-wrapper"}>
+            <header className={"header"}>
+                <img src={"https://seeklogo.com/images/P/pepsi-logo-94D7DEF922-seeklogo.com.png"} alt={"some"}/>
+            </header>
+            <nav className={"nav"}>
+                <div>
+                    <a>Profile</a>
+                </div>
+                <div>
+                    <a>Messages</a>
+                </div>
+                <div>
+                    <a>News</a>
+                </div>
+                <div>
+                    <a>Music</a>
+                </div>
+                <div>
+                    <a>Settings</a>
+                </div>
+            </nav>
+            <div className={"content"}>
+                <div>
+                    <img src={"https://img.freepik.com/premium-photo/orange-butterfly-flower-nature-background_38810-5249.jpg?w=900"} alt={"Flower"}/>
+                </div>
+                <div>
+                    Avatar + description
+                </div>
+                <div>
+                    My post
+                    <div>
+                        New Post
+                    </div>
+                    <div>
+                        <div>
+                            Post 1
+                        </div>
+                        <div>
+                            Post 2
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     );
 }
-type PageTitlePropsType = {
-    title : string
-}
-function PageTitle(props: PageTitlePropsType) {
-    return <h1>{props.title}</h1>
-}
-
 export default App;
