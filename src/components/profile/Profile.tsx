@@ -1,5 +1,7 @@
 import React from 'react';
-import {ProfileStyled} from "./ProfileStyled";
+import {InputNewsField, ProfileStyled} from "./ProfileStyled";
+import {Post} from "./MyPosts/Post";
+import {Button} from "../buttons/ButtonStyled";
 
 export const Profile = () => {
     return (
@@ -7,23 +9,16 @@ export const Profile = () => {
             <div>
                 <img src={"https://img.freepik.com/premium-photo/orange-butterfly-flower-nature-background_38810-5249.jpg?w=900"} alt={"Flower"}/>
             </div>
+            <InputNewsField/>
+            <Button>Add post</Button>
+            <Button>Remove</Button>
             <div>
                 Avatar + description
             </div>
-            <div>
-                My post
-                <div>
-                    New Post
-                </div>
-                <div>
-                    <div>
-                        Post 1
-                    </div>
-                    <div>
-                        Post 2
-                    </div>
-                </div>
-            </div>
+            <Post postbody={"My first post"}/>
+            <Post postbody={"My second post"}/>
+            <Post postbody={"My third post"}/>
         </ProfileStyled>
     );
 };
+
