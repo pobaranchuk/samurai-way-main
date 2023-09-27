@@ -1,24 +1,26 @@
 import React from 'react';
-import {NavBarStyled} from "./NavBarStyled";
+import {ItemStyled, NavBarStyled} from "./NavBarStyled";
 
 export const NavBar = () => {
     return (
         <NavBarStyled>
-            <div>
+            <ItemStyled>
                 <a>Profile</a>
-            </div>
-            <div>
+            </ItemStyled>
+            <ItemStyled>
                 <a>Messages</a>
-            </div>
-            <div>
+            </ItemStyled>
+            <ItemStyled>
                 <a>News</a>
-            </div>
-            <div>
+            </ItemStyled>
+            <ItemStyled>
                 <a>Music</a>
-            </div>
-            <div>
+            </ItemStyled>
+            <ItemStyled>
                 <a>Settings</a>
-            </div>
+            </ItemStyled>
         </NavBarStyled>
     );
 };
+
+
