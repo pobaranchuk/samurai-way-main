@@ -1,18 +1,10 @@
 import styled from "styled-components";
 
 export const ProfileStyled = styled.section`
-  grid-area: content;
-  background-color: cornflowerblue;
-  max-width: 1170px;
-  width: 100%;
-  min-height: 100%;
-  padding: 0 15px;
-  margin: 0 auto;
 
-  div img {
-    max-width: 100%;
-    max-height: 100%;
-  }
+
+  background-color: #5BD5A9;
+  grid-area: label1;
 `
 export  const InputNewsField = styled.input`
   width: 50%; //ширина поля ввода равна ширине формы

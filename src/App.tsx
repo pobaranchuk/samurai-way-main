@@ -5,14 +5,17 @@ import {NavBar} from "./components/navigation/NavBar";
 import {Profile} from "./components/profile/Profile";
 import {AppWrapperStyled} from "./components/AppWrapper";
 import Dialogs from "./components/dialogs/Dialogs";
+import {BrowserRouter, Route, Routes} from "react-router-dom";
 function App() {
     return (
-        <AppWrapperStyled>
-            <Header/>
-            <NavBar/>
-            <Profile/>
-            <Dialogs/>
-        </AppWrapperStyled>
+            <AppWrapperStyled>
+                <Header/>
+                <NavBar/>
+                <Routes>
+                    <Route path={"/Profile"} element={<Profile/>}/>
+                    <Route path={"/Dialogs"} element={<Dialogs />}/>
+                </Routes>
+            </AppWrapperStyled>
     );
 }
 export default App;

@@ -6,9 +6,6 @@ import {Button} from "../buttons/ButtonStyled";
 export const Profile = () => {
     return (
         <ProfileStyled>
-            <div>
-                <img src={"https://img.freepik.com/premium-photo/orange-butterfly-flower-nature-background_38810-5249.jpg?w=900"} alt={"Flower"}/>
-            </div>
             <InputNewsField/>
             <Button>Add post</Button>
             <Button>Remove</Button>

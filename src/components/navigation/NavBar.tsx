@@ -5,10 +5,10 @@ export const NavBar = () => {
     return (
         <NavBarStyled>
             <ItemStyled>
-                <a>Profile</a>
+                <a href={"/Profile"}>Profile</a>
             </ItemStyled>
             <ItemStyled>
-                <a>Messages</a>
+                <a href={"/Dialogs"}>Dialogs</a>
             </ItemStyled>
             <ItemStyled>
                 <a>News</a>

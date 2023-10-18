@@ -4,7 +4,7 @@ import {DialogsStyled} from "./DialogsStyled";
 const Dialogs = () => {
     return (
         <DialogsStyled>
-
+            Dialog
         </DialogsStyled>
     );
 };
