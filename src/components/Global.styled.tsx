@@ -24,8 +24,12 @@ export const GlobalStyled = createGlobalStyle`
 
   a {
     text-decoration: none;
-    color: burlywood;
+    color: dimgrey;
     cursor: pointer;
+  }
+  
+  a.active{
+    color: black;
   }
 
   ul {
