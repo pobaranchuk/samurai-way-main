@@ -7,11 +7,10 @@ type PostType = {
     postbody: string
 }
 
-export const Post = (props: PostType) => {
+export const Post: React.FC<PostType> = ({postbody}) => {
     return (
         <PostStyled>
-            <MiniAvatar/>
-            {props.postbody}
+            {postbody}
         </PostStyled>
     );
 };
