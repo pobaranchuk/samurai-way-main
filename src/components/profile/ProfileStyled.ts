@@ -1,8 +1,6 @@
 import styled from "styled-components";
 
 export const ProfileStyled = styled.section`
-
-
   background-color: #5BD5A9;
   grid-area: label1;
 `
