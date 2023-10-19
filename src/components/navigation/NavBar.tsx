@@ -6,19 +6,19 @@ export const NavBar = () => {
     return (
         <NavBarStyled>
             <ItemStyled>
-                <NavLink to={"/Profile"}>Profile</NavLink>
+                <NavLink to={"/profile"}>Profile</NavLink>
             </ItemStyled>
             <ItemStyled>
-                <NavLink to={"/Dialogs"}>Dialogs</NavLink>
+                <NavLink to={"/dialogs"}>Dialogs</NavLink>
             </ItemStyled>
             <ItemStyled>
-                <NavLink to={"/News"}>News</NavLink>
+                <NavLink to={"/news"}>News</NavLink>
             </ItemStyled>
             <ItemStyled>
-                <NavLink to={"/Music"}>Music</NavLink>
+                <NavLink to={"/music"}>Music</NavLink>
             </ItemStyled>
             <ItemStyled>
-                <NavLink to={"/Settings"}>Settings</NavLink>
+                <NavLink to={"/settings"}>Settings</NavLink>
             </ItemStyled>
         </NavBarStyled>
     );

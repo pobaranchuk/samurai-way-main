@@ -4,16 +4,17 @@ import {DialogsItemsStyled} from "./DialogsItemsStyled";
 import {Dialog} from "./Dialog";
 import {Messages} from "./Messages";
 import {Message} from "./Message";
+import {NavLink} from "react-router-dom";
 
 const Dialogs = () => {
     return (
         <DialogsStyled>
             <DialogsItemsStyled>
-                <Dialog>Slava</Dialog>
-                <Dialog>Andrey</Dialog>
-                <Dialog>Sergey</Dialog>
-                <Dialog>Asia</Dialog>
-                <Dialog>Bohdan</Dialog>
+                <Dialog><NavLink to={"/dialogs/1"}>Slava</NavLink></Dialog>
+                <Dialog><NavLink to={"/dialogs/2"}>Andrey</NavLink></Dialog>
+                <Dialog><NavLink to={"/dialogs/3"}>Sergey</NavLink></Dialog>
+                <Dialog><NavLink to={"/dialogs/4"}>Asia</NavLink></Dialog>
+                <Dialog><NavLink to={"/dialogs/5"}>Bohdan</NavLink></Dialog>
             </DialogsItemsStyled>
 
             <Messages>
