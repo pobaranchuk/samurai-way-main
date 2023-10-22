@@ -15,9 +15,9 @@ export type MessageItemPropsType = {
     name: string
     message: string
 }
-const DialogItem: React.FC <DialogItemPropsType> = ({name, id}) => {
+const DialogItem: React.FC<DialogItemPropsType> = ({name, id}) => {
     return (
-        <Dialog><NavLink to={"/dialogs/" + id }>{name}</NavLink></Dialog>
+        <Dialog><NavLink to={"/dialogs/" + id}>{name}</NavLink></Dialog>
     )
 }
 
@@ -28,6 +28,24 @@ const MessageItem: React.FC<MessageItemPropsType> = ({name, message}) => {
 }
 
 const Dialogs = () => {
+
+    let dialogData = [
+        {id: 1, name: "Slava"},
+        {id: 2, name: "Andrey"},
+        {id: 3, name: "Sergey"},
+        {id: 4, name: "Asia"},
+        {id: 5, name: "Bohdan"},
+        {id: 6, name: "Max"}
+    ]
+    let messageData = [
+        {id: 1, message: "Yo how are you"},
+        {id: 2, message: "Yo how are you"},
+        {id: 3, message: "Yo how are you"},
+        {id: 4, message: "Yo how are you"},
+        {id: 5, message: "Yo how are you"},
+        {id: 6, message: "Yo how are you"}
+    ]
+
     return (
         <DialogsStyled>
             <DialogsItemsStyled>

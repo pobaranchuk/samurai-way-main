@@ -5,12 +5,14 @@ import {MiniAvatar} from "../../avatar/MiniAvatar";
 
 type PostType = {
     postbody: string
+    likeCount: number
 }
 
-export const Post: React.FC<PostType> = ({postbody}) => {
+export const Post: React.FC<PostType> = ({postbody, likeCount}) => {
+
     return (
         <PostStyled>
-            {postbody}
+            <div>{postbody}</div>{likeCount}<div></div>
         </PostStyled>
     );
 };
