@@ -12,6 +12,7 @@ export const Post: React.FC<PostType> = ({postbody, likeCount}) => {
 
     return (
         <PostStyled>
+            <MiniAvatar/>
             <div>{postbody}</div>{likeCount}<div></div>
         </PostStyled>
     );
