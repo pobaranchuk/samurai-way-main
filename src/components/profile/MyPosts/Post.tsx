@@ -1,5 +1,4 @@
 import React from 'react';
-import styled from "styled-components";
 import {PostStyled} from "./PostStyled";
 import {MiniAvatar} from "../../avatar/MiniAvatar";
 
