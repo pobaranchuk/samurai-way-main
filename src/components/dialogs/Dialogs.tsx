@@ -1,10 +1,9 @@
 import React from 'react';
-import {DialogsStyled} from "./DialogsStyled";
-import {DialogsItemsStyled} from "./DialogsItemsStyled";
-import {Dialog} from "./Dialog";
-import {Messages} from "./Messages";
+import {DialogStyled} from "./DialogStyled";
+import {MessagesStyled} from "./MessagesStyled";
 import {MessageStyled} from "./Message";
 import {NavLink} from "react-router-dom";
+import {DialogsStyled, MenuDialogsStyled} from "./DialogsStyled";
 
 export type DialogItemPropsType = {
     id: number
@@ -17,7 +16,7 @@ export type MessageItemPropsType = {
 }
 const DialogItem: React.FC<DialogItemPropsType> = ({name, id}) => {
     return (
-        <Dialog><NavLink to={"/dialogs/" + id}>{name}</NavLink></Dialog>
+        <DialogStyled><NavLink to={"/dialogs/" + id}>{name}</NavLink></DialogStyled>
     )
 }
 
@@ -51,10 +50,10 @@ const Dialogs = () => {
     const messagesElement = messageData.map(message => <MessageItem key={message.id} message={message.message}/>)
 
     return (
-        <DialogsStyled>
-            <DialogsItemsStyled>{dialogElement}</DialogsItemsStyled>
-            <Messages>{messagesElement}</Messages>
-        </DialogsStyled>
+        <MenuDialogsStyled>
+            <DialogsStyled>{dialogElement}</DialogsStyled>
+            <MessagesStyled>{messagesElement}</MessagesStyled>
+        </MenuDialogsStyled>
     );
 };
 

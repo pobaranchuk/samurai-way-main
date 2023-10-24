@@ -5,7 +5,7 @@ import {NavBar} from "./components/navigation/NavBar";
 import {Profile} from "./components/profile/Profile";
 import {AppWrapperStyled} from "./components/AppWrapper";
 import Dialogs from "./components/dialogs/Dialogs";
-import {BrowserRouter, Route, Routes} from "react-router-dom";
+import {Route, Routes} from "react-router-dom";
 function App() {
     return (
             <AppWrapperStyled>

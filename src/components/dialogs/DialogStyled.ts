@@ -1,6 +1,6 @@
 import styled from "styled-components";
 
-export const Dialog = styled.div`
+export const DialogStyled = styled.div`
 
   &.active {
     color: blueviolet;
