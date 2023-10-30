@@ -1,15 +1,18 @@
 import React from 'react';
-import {InputNewsField, ProfileStyled} from "./ProfileStyled";
-import {Post} from "./MyPosts/Post";
-import {Button} from "../buttons/ButtonStyled";
+import {ProfileStyled} from "./ProfileStyled";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import Posts from "./MyPosts/Posts";
+import {PostType} from "../../App";
 
-export const Profile = () => {
+type ProfileDataType = {
+    posts: PostType[]
+}
+
+export const Profile: React.FC<ProfileDataType> = ({posts}) => {
     return (
         <ProfileStyled>
             <ProfileInfo/>
-            <Posts/>
+            <Posts postData={posts}/>
         </ProfileStyled>
     );
 };
