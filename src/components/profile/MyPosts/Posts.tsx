@@ -9,26 +9,30 @@ import {v1} from "uuid";
 type PostDataType = {
     postData: PostType[]
 }
-export const Posts: React.FC <PostDataType> = ({postData}) => {
+export const Posts: React.FC<PostDataType> = ({postData}) => {
 
     const [posts, setPosts] = useState(postData)
 
-
-
     const [value, setValue] = useState("")
-    const postElement = posts.map(post => <Post key={post.id} postbody={post.postbody} likeCount={post.likesCount}/>)
 
-    const onChangeHandler =  (e: ChangeEvent<HTMLInputElement>)=>{
+    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         setValue(e.currentTarget.value)
     }
-    const AddPostHandler = ()=> {
+    const AddPostHandler = () => {
         let newPost = {id: v1(), postbody: value, likesCount: 0}
         setPosts([...posts, newPost])
         setValue("")
     }
+
+    const removePostHandler = (id: string) => {
+        setPosts(posts.filter(p => p.id !== id))
+    }
+
+    const postElement = posts.map(post => <Post post={post} removePost={removePostHandler}/>)
+
     return (
         <PostsStyled>
-            <InputStyled value={value} onChange={onChangeHandler} />
+            <InputStyled value={value} onChange={onChangeHandler}/>
             <Button onClick={AddPostHandler}>Add post</Button>
             {postElement}
         </PostsStyled>
