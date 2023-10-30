@@ -8,18 +8,18 @@ import Dialogs from "./components/dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
 
 export type PostType = {
-    id: number
+    id: string
     postbody: string
     likesCount: number
 }
 
 export type MessageType = {
-    id: number
+    id: string
     message: string
 }
 
 export type DialogType = {
-    id: number
+    id: string
     name: string
 }
 

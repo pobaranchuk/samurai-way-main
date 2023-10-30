@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {useState} from 'react';
 import {ProfileStyled} from "./ProfileStyled";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import Posts from "./MyPosts/Posts";
@@ -9,6 +9,7 @@ type ProfileDataType = {
 }
 
 export const Profile: React.FC<ProfileDataType> = ({posts}) => {
+
     return (
         <ProfileStyled>
             <ProfileInfo/>

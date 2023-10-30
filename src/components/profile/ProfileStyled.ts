@@ -1,14 +1,15 @@
 import styled from "styled-components";
 
-export const ProfileStyled = styled.section`
+export const ProfileStyled = styled.div`
   background-color: #5BD5A9;
   grid-area: label1;
 `
-export  const InputNewsField = styled.input`
+export  const InputStyled = styled.input`
   width: 50%; //ширина поля ввода равна ширине формы
   border: 1px solid #4A4A4A;
   background-color: whitesmoke;
   padding: 7px 15px;
+  margin-left: 20px;
 
   color: #4A4A4A;
   font-family: Poppins, sans-serif;
