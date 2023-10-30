@@ -17,25 +17,37 @@ export type MessageType = {
     id: number
     message: string
 }
+
 export type DialogType = {
     id: number
     name: string
 }
 
-export type DataType = {
+export type ProfilePageType = {
     posts: PostType[]
+}
+export type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
 }
 
-const App: React.FC<DataType> = ({posts, dialogs, messages}) => {
+export type DataType = {
+    profilePage: ProfilePageType
+    dialogPage: DialogPageType
+}
+
+type SateType = {
+    state: DataType
+}
+
+const App: React.FC<SateType> = ({state}) => {
     return (
         <AppWrapperStyled>
             <Header/>
             <NavBar/>
             <Routes>
-                <Route path={"/profile"} element={<Profile posts={posts}/>}/>
-                <Route path={"/dialogs/*"} element={<Dialogs dialogs={dialogs} messages={messages}/>}/>
+                <Route path={"/profile"} element={<Profile posts={state.profilePage.posts}/>}/>
+                <Route path={"/dialogs/*"} element={<Dialogs dialogs={state.dialogPage.dialogs} messages={state.dialogPage.messages}/>}/>
                 {/*<Route path={"/News"} element={<News />}/>*/}
                 {/*<Route path={"/Music"} element={<Music />}/>*/}
                 {/*<Route path={"/Settings"} element={<Settings />}/>*/}
