@@ -1,39 +1,35 @@
-import React, {ChangeEvent, useState} from 'react';
+import React, {ChangeEvent} from 'react';
 import {Button} from "../../buttons/ButtonStyled";
 import {Post} from "./Post";
 import {InputStyled} from "../ProfileStyled";
 import {PostsStyled} from "./PostsStyled";
-import {PostType} from "../../../App";
-import {v1} from "uuid";
+import {ProfilePageType} from "../../../App";
 
 type PostDataType = {
-    postData: PostType[]
+    profilePage: ProfilePageType
+    addPost: ()=> void
+    updateNewPostText: (value: string)=> void
+    newPostText:string
 }
-export const Posts: React.FC<PostDataType> = ({postData}) => {
+export const Posts: React.FC<PostDataType> = ({profilePage, addPost, newPostText, updateNewPostText}) => {
 
-    const [posts, setPosts] = useState(postData)
+    const postElement = profilePage.posts.map(post => <Post id={post.id} postbody={post.postbody} likesCount={post.likesCount}/>)
 
-    const [value, setValue] = useState("")
+    let newPostElement = React.createRef<HTMLInputElement>()
 
-    const onChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        setValue(e.currentTarget.value)
-    }
-    const AddPostHandler = () => {
-        let newPost = {id: v1(), postbody: value, likesCount: 0}
-        setPosts([...posts, newPost])
-        setValue("")
+    const addPostHandler = () => {
+        addPost()
     }
 
-    const removePostHandler = (id: string) => {
-        setPosts(posts.filter(p => p.id !== id))
+    const onPostChange = () => {
+        let text = newPostElement.current.value
+        updateNewPostText(text)
     }
-
-    const postElement = posts.map(post => <Post post={post} removePost={removePostHandler}/>)
 
     return (
         <PostsStyled>
-            <InputStyled value={value} onChange={onChangeHandler}/>
-            <Button onClick={AddPostHandler}>Add post</Button>
+            <InputStyled value={newPostText} onChange={onPostChange} ref={newPostElement}/>
+            <Button onClick={addPostHandler}>Add post</Button>
             {postElement}
         </PostsStyled>
     );

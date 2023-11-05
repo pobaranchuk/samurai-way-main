@@ -1,19 +1,24 @@
-import React, {useState} from 'react';
+import React from 'react';
 import {ProfileStyled} from "./ProfileStyled";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import Posts from "./MyPosts/Posts";
-import {PostType} from "../../App";
+import {ProfilePageType} from "../../App";
 
 type ProfileDataType = {
-    posts: PostType[]
+    profilePage: ProfilePageType
+    addPost: ()=>void
+    updateNewPostText: (value: string) => void
 }
 
-export const Profile: React.FC<ProfileDataType> = ({posts}) => {
+export const Profile: React.FC<ProfileDataType> = ({profilePage, addPost, updateNewPostText}) => {
 
     return (
         <ProfileStyled>
             <ProfileInfo/>
-            <Posts postData={posts}/>
+            <Posts profilePage={profilePage}
+                   newPostText={profilePage.newPostText}
+                   updateNewPostText={updateNewPostText}
+                   addPost={addPost}/>
         </ProfileStyled>
     );
 };
