@@ -6,6 +6,9 @@ import {Profile} from "./components/profile/Profile";
 import {AppWrapperStyled} from "./components/AppWrapper";
 import Dialogs from "./components/dialogs/Dialogs";
 import {Route, Routes} from "react-router-dom";
+import News from "./components/news/News";
+import {Settings} from "./components/settings/Settings";
+import {Friends} from "./components/friends/Friends";
 
 export type PostType = {
     id: string
@@ -46,24 +49,27 @@ type StateType = {
 
 const App: React.FC<StateType> = ({state, addPost, updateNewPostText}) => {
     return (
-        <AppWrapperStyled>
+        <>
             <Header/>
-            <NavBar/>
-            <Routes>
-                <Route path={"/profile"} element={
-                    <Profile
-                        profilePage={state.profilePage}
-                        addPost={addPost}
-                        updateNewPostText={updateNewPostText}/>}
-                />
-                <Route path={"/dialogs/*"} element={<Dialogs dialogs={state.dialogPage.dialogs}
-                                                             messages={state.dialogPage.messages}/>}
-                />
-                {/*<Route path={"/News"} element={<News />}/>*/}
-                {/*<Route path={"/Music"} element={<Music />}/>*/}
-                {/*<Route path={"/Settings"} element={<Settings />}/>*/}
-            </Routes>
-        </AppWrapperStyled>
+            <AppWrapperStyled>
+                <NavBar/>
+                <Routes>
+                    <Route path={"/profile"} element={
+                        <Profile
+                            profilePage={state.profilePage}
+                            addPost={addPost}
+                            updateNewPostText={updateNewPostText}/>}
+                    />
+                    <Route path={"/dialogs/*"} element={<Dialogs dialogs={state.dialogPage.dialogs}
+                                                                 messages={state.dialogPage.messages}/>}
+                    />
+                    <Route path={"/news"} element={<News />}/>
+                    <Route path={"/friends"} element={<Friends />}/>
+                    <Route path={"/settings"} element={<Settings />}/>
+                </Routes>
+            </AppWrapperStyled>
+
+        </>
     );
 }
 export default App;

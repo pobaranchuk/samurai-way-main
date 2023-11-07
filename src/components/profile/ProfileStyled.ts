@@ -1,8 +1,8 @@
 import styled from "styled-components";
 
 export const ProfileStyled = styled.div`
+  width: 70%;
   background-color: #5BD5A9;
-  grid-area: label1;
 `
 export  const InputStyled = styled.input`
   width: 50%; //ширина поля ввода равна ширине формы
@@ -13,7 +13,7 @@ export  const InputStyled = styled.input`
 
   color: #4A4A4A;
   font-family: Poppins, sans-serif;
-  font-size: 12px;
+  font-size: 16px;
   letter-spacing: 0.6px;
   
   &::placeholder {

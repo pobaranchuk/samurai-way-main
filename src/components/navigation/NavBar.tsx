@@ -9,13 +9,13 @@ export const NavBar = () => {
                 <NavLink to={"/profile"}>Profile</NavLink>
             </ItemStyled>
             <ItemStyled>
+                <NavLink to={"/friends"}>Friends</NavLink>
+            </ItemStyled>
+            <ItemStyled>
                 <NavLink to={"/dialogs"}>Dialogs</NavLink>
             </ItemStyled>
             <ItemStyled>
                 <NavLink to={"/news"}>News</NavLink>
-            </ItemStyled>
-            <ItemStyled>
-                <NavLink to={"/music"}>Music</NavLink>
             </ItemStyled>
             <ItemStyled>
                 <NavLink to={"/settings"}>Settings</NavLink>
