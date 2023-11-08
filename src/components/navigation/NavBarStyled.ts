@@ -1,23 +1,36 @@
 import styled from "styled-components";
 
 export const NavBarStyled = styled.div`
-  width: 30%;
+  width: 25%;
   background-color: azure;
-  height: 100%;
-  margin: 0;
-  text-align: center;
-  font-size: 1em;
-  transition: font-size .75s ease;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 
-  :hover {
-    font-size: 1.5em;
+  & > li {
+    display: inline-flex;
+    background: gray;
+    margin: 10px;
+
+    &:is(:hover, :focus-within) > button:not(:active) {
+      --distance: -8px;
+    }
   }
-`
 
-export const ItemStyled = styled.div`
-  color: #4A4A4A;
-  font-family: Poppins, sans-serif;
-  font-size: 16px;
-  letter-spacing: 0.8px;
-  margin: 20px;
+  & button {
+    appearance: none;
+    outline: none;
+    font-size: 5vmin;
+    border: 2px solid black;
+    background: white;
+
+    --distance: 0;
+    transform: translateX(var(--distance)) translateY(var(--distance));
+
+    @media (prefers-reduced-motion: no-preference) {
+      will-change: transform;
+      transition: transform .1s ease ;
+    }
+  }
 `
