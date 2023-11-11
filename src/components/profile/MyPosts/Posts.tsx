@@ -1,29 +1,31 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {Button} from "../../buttons/ButtonStyled";
 import {Post} from "./Post";
 import {InputStyled} from "../ProfileStyled";
 import {PostsStyled} from "./PostsStyled";
-import {ProfilePageType} from "../../../App";
+import {ActionsTypes, ProfilePageType} from "../../../redux/state";
 
 type PostDataType = {
     profilePage: ProfilePageType
-    addPost: ()=> void
-    updateNewPostText: (value: string)=> void
-    newPostText:string
+    dispatch: (action: ActionsTypes)=> void
+    newPostText: string
 }
-export const Posts: React.FC<PostDataType> = ({profilePage, addPost, newPostText, updateNewPostText}) => {
+export const Posts: React.FC<PostDataType> = ({profilePage, dispatch, newPostText}) => {
 
-    const postElement = profilePage.posts.map(post => <Post id={post.id} postbody={post.postbody} likesCount={post.likesCount}/>)
+    const postElement = profilePage.posts.map(post => <Post id={post.id} postbody={post.postbody}
+                                                            likesCount={post.likesCount}/>)
 
     let newPostElement = React.createRef<HTMLInputElement>()
 
     const addPostHandler = () => {
-        addPost()
+        let action = {type: "ADD-POST", newPostText}as const;
+        dispatch(action)
     }
 
     const onPostChange = () => {
         let text = newPostElement.current.value
-        updateNewPostText(text)
+        let action = {type: "UPDATE-NEW-POST-TEXT", newText: text}as const;
+        dispatch(action)
     }
 
     return (

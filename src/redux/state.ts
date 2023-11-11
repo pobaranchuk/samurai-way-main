@@ -1,8 +1,58 @@
 import {v1} from "uuid";
-import {DataType} from "../App";
 
-export let store = {
-    _state : {
+export type PostType = {
+    id: string
+    postbody: string
+    likesCount: number
+}
+
+export type MessageType = {
+    id: string
+    message: string
+}
+
+export type DialogType = {
+    id: string
+    name: string
+}
+
+export type ProfilePageType = {
+    posts: PostType[]
+    newPostText: string
+}
+
+export type DialogPageType = {
+    dialogs: DialogType[]
+    messages: MessageType[]
+}
+
+export type RootDataType = {
+    profilePage: ProfilePageType
+    dialogPage: DialogPageType
+}
+
+type AddPostActionType = {
+    type: "ADD-POST"
+    newPostText: string
+}
+
+type ChangeNewTextActionType = {
+    type: "UPDATE-NEW-POST-TEXT"
+    newText: string
+}
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+
+export type StoreType = {
+    _state: RootDataType
+    _callSubscriber: (state: RootDataType) => void
+    getState: () => RootDataType
+    subscribe: (observer: (state: RootDataType) => void) => void
+    dispatch: (action: ActionsTypes) => void
+}
+
+export const store: StoreType = {
+    _state: {
         profilePage: {
             posts: [
                 {id: v1(), postbody: "Yo how are you", likesCount: 112},
@@ -33,31 +83,30 @@ export let store = {
             ]
         }
     },
+    _callSubscriber(state) {
+    },
 
     getState() {
         return this._state
     },
-
-    addPost(){
-        let newPost = {
-            id: v1(),
-            postbody: this._state.profilePage.newPostText,
-            likesCount: 0
-        }
-        this._state.profilePage.posts.push(newPost)
-        this._state.profilePage.newPostText = ""
-        this._callSubscriber(this._state)
-    },
-
-    updateNewPostText(newText: string) {
-        this._state.profilePage.newPostText = newText;
-        this._callSubscriber(this._state)
-    },
-
-    _callSubscriber(state: DataType) {
-    },
-
-    subscribe(observer: object){
+    subscribe(observer) {
         this._callSubscriber = observer
+    },
+
+    dispatch(action) {
+        if (action.type === "ADD-POST") {
+            let newPost: PostType = {
+                id: v1(),
+                postbody: action.newPostText,
+                likesCount: 0
+            }
+            this._state.profilePage.posts.push(newPost)
+            this._state.profilePage.newPostText = ""
+            this._callSubscriber(this._state)
+
+        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+            this._state.profilePage.newPostText = action.newText;
+            this._callSubscriber(this._state)
+        }
     }
 }

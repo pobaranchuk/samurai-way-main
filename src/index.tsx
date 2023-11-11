@@ -1,20 +1,20 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import App from './App';
+import {RootDataType} from './redux/state';
 import {GlobalStyled} from "./components/Global.styled";
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/state";
+import App from "./App";
 
 
-let renderEntireTree = (state)=> {
+let renderEntireTree = (state: RootDataType)=> {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
                 <GlobalStyled/>
                 <App state={state}
-                     addPost={store.addPost.bind(store)}
-                     updateNewPostText={store.updateNewPostText.bind(store)}
+                     dispatch={store.dispatch.bind(store)}
                 />
             </BrowserRouter>
         </React.StrictMode>,

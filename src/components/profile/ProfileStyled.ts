@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const ProfileStyled = styled.div`
-  width: 70%;
+  width: 75%;
   background-color: #5BD5A9;
 `
 export  const InputStyled = styled.input`

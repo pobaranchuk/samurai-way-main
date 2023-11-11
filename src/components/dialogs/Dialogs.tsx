@@ -4,7 +4,7 @@ import {MessagesStyled} from "./MessagesStyled";
 import {MessageStyled} from "./Message";
 import {NavLink} from "react-router-dom";
 import {DialogsStyled, MenuDialogsStyled} from "./DialogsStyled";
-import {DialogType, MessageType} from "../../App";
+import {DialogType, MessageType} from "../../redux/state";
 
 export type DialogItemType = {
     dialog: DialogType
