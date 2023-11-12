@@ -2,7 +2,7 @@ import React from 'react';
 import {ProfileStyled} from "./ProfileStyled";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
 import Posts from "./MyPosts/Posts";
-import {ActionsTypes, ProfilePageType} from "../../redux/state";
+import {ActionsTypes, ProfilePageType} from "../../redux/store";
 
 type ProfileDataType = {
     dispatch: (action: ActionsTypes)=> void

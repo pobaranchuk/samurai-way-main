@@ -9,7 +9,7 @@ import {Route, Routes} from "react-router-dom";
 import News from "./components/news/News";
 import {Settings} from "./components/settings/Settings";
 import {Friends} from "./components/friends/Friends";
-import {ActionsTypes, RootDataType} from "./redux/state";
+import {ActionsTypes, RootDataType} from "./redux/store";
 
 export type StateType = {
     dispatch: (action: ActionsTypes) => void

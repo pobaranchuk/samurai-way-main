@@ -3,7 +3,8 @@ import {Button} from "../../buttons/ButtonStyled";
 import {Post} from "./Post";
 import {InputStyled} from "../ProfileStyled";
 import {PostsStyled} from "./PostsStyled";
-import {ActionsTypes, AddPostActionCreator, ChangeNewTextActionCreator, ProfilePageType} from "../../../redux/state";
+import {ActionsTypes, ProfilePageType} from "../../../redux/store";
+import {AddPostActionCreator, ChangeNewTextActionCreator} from "../../../redux/profile-reducer";
 
 type PostDataType = {
     dispatch: (action: ActionsTypes)=> void

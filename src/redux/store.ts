@@ -1,4 +1,6 @@
 import {v1} from "uuid";
+import {AddPostActionCreator, ChangeNewTextActionCreator, ProfileReducer} from "./profile-reducer";
+import {DialogReducer, SendMessageCreator, UpdateNewMessageBodyCreator} from "./dialog-reducer";
 
 export type PostType = {
     id: string
@@ -46,30 +48,6 @@ export type ActionsTypes = ReturnType<typeof AddPostActionCreator>
     | ReturnType<typeof SendMessageCreator>
 
 
-export const AddPostActionCreator = (newPostText: string) => {
-    return {
-        type: "ADD-POST",
-        newPostText: newPostText
-    } as const
-}
-export const ChangeNewTextActionCreator = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-POST-TEXT",
-        newText: newText
-    } as const
-}
-export const UpdateNewMessageBodyCreator = (newText: string) => {
-    return {
-        type: "UPDATE-NEW-MESSAGE-BODY",
-        body: newText
-    } as const
-}
-export const SendMessageCreator = (newText: string) => {
-    return {
-        type: "SEND-MESSAGE",
-        newText: newText
-    } as const
-}
 
 export const store: StoreType = {
     _state: {
@@ -115,34 +93,10 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        switch (action.type) {
-            case "ADD-POST":
-                this._state.profilePage.posts.push({id: v1(),postbody: action.newPostText,likesCount: 0});
-                this._state.profilePage.newPostText = "";
-                this._callSubscriber(this._state);
-                break;
+        this._state.profilePage = ProfileReducer(this._state.profilePage, action)
+        this._state.dialogPage = DialogReducer(this._state.dialogPage, action)
 
-            case "UPDATE-NEW-POST-TEXT":
-                this._state.profilePage.newPostText = action.newText;
-                this._callSubscriber(this._state);
-                break;
-
-            case "UPDATE-NEW-MESSAGE-BODY":
-                this._state.dialogPage.newMessageBody = action.body;
-                this._callSubscriber(this._state);
-                break;
-
-            case "SEND-MESSAGE":
-                let body = this._state.dialogPage.newMessageBody;
-                this._state.dialogPage.newMessageBody = "";
-                this._state.dialogPage.messages.push({id: v1(), message: body});
-                this._callSubscriber(this._state);
-                break;
-
-            default:
-                // Handle unknown action type
-                break;
-        }
+        this._callSubscriber(this._state);
     }
 
     // dispatch(action) {

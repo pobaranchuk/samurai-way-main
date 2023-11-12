@@ -8,12 +8,11 @@ import {
     ActionsTypes,
     DialogPageType,
     DialogType,
-    MessageType,
-    SendMessageCreator,
-    UpdateNewMessageBodyCreator
-} from "../../redux/state";
+    MessageType
+} from "../../redux/store";
 import {InputStyled} from "../profile/ProfileStyled";
 import {Button} from "../buttons/ButtonStyled";
+import {SendMessageCreator, UpdateNewMessageBodyCreator} from "../../redux/dialog-reducer";
 
 export type DialogItemType = {
     dialog: DialogType
