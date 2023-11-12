@@ -5,8 +5,8 @@ import Posts from "./MyPosts/Posts";
 import {ActionsTypes, ProfilePageType} from "../../redux/state";
 
 type ProfileDataType = {
-    profilePage: ProfilePageType
     dispatch: (action: ActionsTypes)=> void
+    profilePage: ProfilePageType
 }
 
 export const Profile: React.FC<ProfileDataType> = ({profilePage,dispatch}) => {
