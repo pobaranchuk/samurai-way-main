@@ -31,24 +31,31 @@ export type RootDataType = {
     dialogPage: DialogPageType
 }
 
-type AddPostActionType = {
-    type: "ADD-POST"
-    newPostText: string
-}
-
-type ChangeNewTextActionType = {
-    type: "UPDATE-NEW-POST-TEXT"
-    newText: string
-}
-
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
-
 export type StoreType = {
     _state: RootDataType
     _callSubscriber: (state: RootDataType) => void
     getState: () => RootDataType
     subscribe: (observer: (state: RootDataType) => void) => void
     dispatch: (action: ActionsTypes) => void
+}
+
+type AddPostActionType = ReturnType<typeof AddPostActionCreator>
+type ChangeNewTextActionType = ReturnType<typeof ChangeNewTextActionCreator>
+
+export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+
+
+export const AddPostActionCreator = (newPostText: string) => {
+    return {
+        type: "ADD-POST",
+        newPostText: newPostText
+    }as const
+}
+export const ChangeNewTextActionCreator = (newText: string) => {
+    return {
+        type: "UPDATE-NEW-POST-TEXT",
+        newText: newText
+    }as const
 }
 
 export const store: StoreType = {
