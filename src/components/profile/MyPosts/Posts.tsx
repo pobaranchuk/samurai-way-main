@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import {Button} from "../../buttons/ButtonStyled";
 import {Post} from "./Post";
 import {InputStyled} from "../ProfileStyled";
@@ -6,32 +6,29 @@ import {PostsStyled} from "./PostsStyled";
 import {ActionsTypes, AddPostActionCreator, ChangeNewTextActionCreator, ProfilePageType} from "../../../redux/state";
 
 type PostDataType = {
-    profilePage: ProfilePageType
     dispatch: (action: ActionsTypes)=> void
-    newPostText: string
+    profilePage: ProfilePageType
 }
 
 
-export const Posts: React.FC<PostDataType> = ({profilePage, dispatch, newPostText}) => {
+export const Posts: React.FC<PostDataType> = ({dispatch, profilePage}) => {
 
-    const postElement = profilePage.posts.map(post => <Post id={post.id} postbody={post.postbody}
-                                                            likesCount={post.likesCount}/>)
+    const postElement = profilePage.posts.map(post =>
+        <Post id={post.id} postbody={post.postbody} likesCount={post.likesCount}/>)
 
-    let newPostElement = React.createRef<HTMLInputElement>()
-
-    const addPostHandler = () => {
-        dispatch(AddPostActionCreator(newPostText))
-    }
-
-    const onPostChange = () => {
-        let text = newPostElement.current.value
+    const onPostChange = (e:ChangeEvent<HTMLInputElement>) => {
+        let text = e.currentTarget.value
         //let action = {type: "UPDATE-NEW-POST-TEXT", newText: text}as const;
         dispatch(ChangeNewTextActionCreator(text))
     }
 
+    const addPostHandler = () => {
+        dispatch(AddPostActionCreator(profilePage.newPostText))
+    }
+
     return (
         <PostsStyled>
-            <InputStyled value={newPostText} onChange={onPostChange} ref={newPostElement}/>
+            <InputStyled value={profilePage.newPostText} onChange={onPostChange}/>
             <Button onClick={addPostHandler}>Add post</Button>
             {postElement}
         </PostsStyled>

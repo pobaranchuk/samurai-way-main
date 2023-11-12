@@ -31,8 +31,9 @@ const App: React.FC<StateType> = ({state, dispatch}) => {
                     />
                     <Route path={"/dialogs/*"} element={
                         <Dialogs
-                            dialogs={state.dialogPage.dialogs}
-                            messages={state.dialogPage.messages}/>}
+                            dispatch={dispatch}
+                            dialogPage={state.dialogPage}
+                        />}
                     />
                     <Route path={"/news"} element={<News/>}/>
                     <Route path={"/friends"} element={<Friends/>}/>

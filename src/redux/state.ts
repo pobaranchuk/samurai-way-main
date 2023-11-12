@@ -24,6 +24,7 @@ export type ProfilePageType = {
 export type DialogPageType = {
     dialogs: DialogType[]
     messages: MessageType[]
+    newMessageBody: string
 }
 
 export type RootDataType = {
@@ -39,23 +40,35 @@ export type StoreType = {
     dispatch: (action: ActionsTypes) => void
 }
 
-type AddPostActionType = ReturnType<typeof AddPostActionCreator>
-type ChangeNewTextActionType = ReturnType<typeof ChangeNewTextActionCreator>
-
-export type ActionsTypes = AddPostActionType | ChangeNewTextActionType
+export type ActionsTypes = ReturnType<typeof AddPostActionCreator>
+    | ReturnType<typeof ChangeNewTextActionCreator>
+    | ReturnType<typeof UpdateNewMessageBodyCreator>
+    | ReturnType<typeof SendMessageCreator>
 
 
 export const AddPostActionCreator = (newPostText: string) => {
     return {
         type: "ADD-POST",
         newPostText: newPostText
-    }as const
+    } as const
 }
 export const ChangeNewTextActionCreator = (newText: string) => {
     return {
         type: "UPDATE-NEW-POST-TEXT",
         newText: newText
-    }as const
+    } as const
+}
+export const UpdateNewMessageBodyCreator = (newText: string) => {
+    return {
+        type: "UPDATE-NEW-MESSAGE-BODY",
+        body: newText
+    } as const
+}
+export const SendMessageCreator = (newText: string) => {
+    return {
+        type: "SEND-MESSAGE",
+        newText: newText
+    } as const
 }
 
 export const store: StoreType = {
@@ -87,7 +100,8 @@ export const store: StoreType = {
                 {id: v1(), message: "Yo how are you"},
                 {id: v1(), message: "Yo how are you"},
                 {id: v1(), message: "Yo how are you"}
-            ]
+            ],
+            newMessageBody: ""
         }
     },
     _callSubscriber(state) {
@@ -101,19 +115,62 @@ export const store: StoreType = {
     },
 
     dispatch(action) {
-        if (action.type === "ADD-POST") {
-            let newPost: PostType = {
-                id: v1(),
-                postbody: action.newPostText,
-                likesCount: 0
-            }
-            this._state.profilePage.posts.push(newPost)
-            this._state.profilePage.newPostText = ""
-            this._callSubscriber(this._state)
+        switch (action.type) {
+            case "ADD-POST":
+                let newPost: PostType = {
+                    id: v1(),
+                    postbody: action.newPostText,
+                    likesCount: 0
+                };
+                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.newPostText = "";
+                this._callSubscriber(this._state);
+                break;
 
-        } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-            this._state.profilePage.newPostText = action.newText;
-            this._callSubscriber(this._state)
+            case "UPDATE-NEW-POST-TEXT":
+                this._state.profilePage.newPostText = action.newText;
+                this._callSubscriber(this._state);
+                break;
+
+            case "UPDATE-NEW-MESSAGE-BODY":
+                this._state.dialogPage.newMessageBody = action.body;
+                this._callSubscriber(this._state);
+                break;
+
+            case "SEND-MESSAGE":
+                let body = this._state.dialogPage.newMessageBody;
+                this._state.dialogPage.newMessageBody = "";
+                this._state.dialogPage.messages.push({id: v1(), message: body});
+                this._callSubscriber(this._state);
+                break;
+
+            default:
+                // Handle unknown action type
+                break;
         }
     }
+
+    // dispatch(action) {
+    //     if (action.type === "ADD-POST") {
+    //         let newPost: PostType = {
+    //             id: v1(),
+    //             postbody: action.newPostText,
+    //             likesCount: 0
+    //         }
+    //         this._state.profilePage.posts.push(newPost)
+    //         this._state.profilePage.newPostText = ""
+    //         this._callSubscriber(this._state)
+    //     } else if (action.type === "UPDATE-NEW-POST-TEXT") {
+    //         this._state.profilePage.newPostText = action.newText
+    //         this._callSubscriber(this._state)
+    //     } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
+    //         this._state.dialogPage.newMessageBody = action.body
+    //         this._callSubscriber(this._state)
+    //     } else if (action.type === "SEND-MESSAGE") {
+    //         let body = this._state.dialogPage.newMessageBody
+    //         this._state.dialogPage.newMessageBody = ""
+    //         this._state.dialogPage.messages.push({id: v1(), message: body})
+    //         this._callSubscriber(this._state)
+    //     }
+    // }
 }

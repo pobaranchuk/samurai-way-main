@@ -15,7 +15,6 @@ export const Profile: React.FC<ProfileDataType> = ({profilePage,dispatch}) => {
         <ProfileStyled>
             <ProfileInfo/>
             <Posts profilePage={profilePage}
-                   newPostText={profilePage.newPostText}
                    dispatch={dispatch}/>
         </ProfileStyled>
     );
