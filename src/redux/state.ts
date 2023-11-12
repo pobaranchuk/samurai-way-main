@@ -117,12 +117,7 @@ export const store: StoreType = {
     dispatch(action) {
         switch (action.type) {
             case "ADD-POST":
-                let newPost: PostType = {
-                    id: v1(),
-                    postbody: action.newPostText,
-                    likesCount: 0
-                };
-                this._state.profilePage.posts.push(newPost);
+                this._state.profilePage.posts.push({id: v1(),postbody: action.newPostText,likesCount: 0});
                 this._state.profilePage.newPostText = "";
                 this._callSubscriber(this._state);
                 break;
