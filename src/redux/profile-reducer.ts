@@ -13,8 +13,19 @@ export const ChangeNewTextActionCreator = (newText: string) => {
     } as const
 }
 
+let initialState = {
+    posts: [
+        {id: v1(), postbody: "Yo how are you", likesCount: 112},
+        {id: v1(), postbody: "Yo how are you", likesCount: 13},
+        {id: v1(), postbody: "Yo how are you", likesCount: 16},
+        {id: v1(), postbody: "Yo how are you", likesCount: 19},
+        {id: v1(), postbody: "Yo how are you", likesCount: 109},
+        {id: v1(), postbody: "Yo how are you", likesCount: 199}
+    ],
+    newPostText: ""
+}
 
-export const ProfileReducer = (state, action) => {
+export const ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD-POST":
             state.posts.push({id: v1(), postbody: state.newPostText, likesCount: 0});

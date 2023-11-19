@@ -6,13 +6,13 @@ import {NavLink} from "react-router-dom";
 import {DialogsStyled, MenuDialogsStyled} from "./DialogsStyled";
 import {
     ActionsTypes,
-    DialogPageType,
     DialogType,
     MessageType
 } from "../../redux/store";
 import {InputStyled} from "../profile/ProfileStyled";
 import {Button} from "../buttons/ButtonStyled";
 import {SendMessageCreator, UpdateNewMessageBodyCreator} from "../../redux/dialog-reducer";
+import {StoreType} from "../../redux/redux-store";
 
 export type DialogItemType = {
     dialog: DialogType
@@ -35,20 +35,23 @@ const MessageItem: React.FC<MessageItemType> = ({message}) => {
 
 type DialogsDataType = {
     dispatch: (action: ActionsTypes) => void
-    dialogPage: DialogPageType
+    store: StoreType
 
 }
 
-const Dialogs: React.FC<DialogsDataType> = ({dialogPage, dispatch}) => {
-    const dialogElement = dialogPage.dialogs.map(dialog => <DialogItem dialog={dialog}/>)
-    const messagesElement = dialogPage.messages.map(message => <MessageItem message={message}/>)
+const Dialogs: React.FC<DialogsDataType> = ({dispatch, store}) => {
+
+    let state = store.getState().dialogPage
+
+    const dialogElement = state.dialogs.map(dialog => <DialogItem dialog={dialog}/>)
+    const messagesElement = state.messages.map(message => <MessageItem message={message}/>)
 
     const onMessageBodyChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
         let body = e.currentTarget.value
         dispatch(UpdateNewMessageBodyCreator(body))
     }
     const addMessageHandler = () => {
-        dispatch(SendMessageCreator(dialogPage.newMessageBody))
+        dispatch(SendMessageCreator(state.newMessageBody))
     }
 
     return (
@@ -56,7 +59,7 @@ const Dialogs: React.FC<DialogsDataType> = ({dialogPage, dispatch}) => {
             <DialogsStyled>{dialogElement}</DialogsStyled>
             <MessagesStyled>
                 {messagesElement}
-                <InputStyled value={dialogPage.newMessageBody} onChange={onMessageBodyChangeHandler}/>
+                <InputStyled value={state.newMessageBody} onChange={onMessageBodyChangeHandler}/>
                 <Button onClick={addMessageHandler}>Send Message</Button>
             </MessagesStyled>
 

@@ -19,7 +19,7 @@ export const Posts: React.FC<PostDataType> = ({dispatch, profilePage}) => {
 
     const onPostChange = (e:ChangeEvent<HTMLInputElement>) => {
         let text = e.currentTarget.value
-        //let action = {type: "UPDATE-NEW-POST-TEXT", newText: text}as const;
+        let action = {type: "UW-POST-TEXT", newText: text}as const;
         dispatch(ChangeNewTextActionCreator(text))
     }
 

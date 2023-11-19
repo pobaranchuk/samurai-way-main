@@ -9,14 +9,16 @@ import {Route, Routes} from "react-router-dom";
 import News from "./components/news/News";
 import {Settings} from "./components/settings/Settings";
 import {Friends} from "./components/friends/Friends";
-import {ActionsTypes, RootDataType} from "./redux/store";
+import {ActionsTypes} from "./redux/store";
+import {AppRootStateType, StoreType} from "./redux/redux-store";
 
 export type StateType = {
     dispatch: (action: ActionsTypes) => void
-    state: RootDataType
+    state: AppRootStateType
+    store: StoreType
 }
 
-const App: React.FC<StateType> = ({state, dispatch}) => {
+const App: React.FC<StateType> = ({state, dispatch, store}) => {
     return (
         <>
             <Header/>
@@ -32,7 +34,7 @@ const App: React.FC<StateType> = ({state, dispatch}) => {
                     <Route path={"/dialogs/*"} element={
                         <Dialogs
                             dispatch={dispatch}
-                            dialogPage={state.dialogPage}
+                            store={store}
                         />}
                     />
                     <Route path={"/news"} element={<News/>}/>

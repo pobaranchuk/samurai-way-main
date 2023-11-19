@@ -4,7 +4,7 @@ import './index.css';
 import {RootDataType} from './redux/store';
 import {GlobalStyled} from "./components/Global.styled";
 import {BrowserRouter} from "react-router-dom";
-import {store} from "./redux/store";
+import {store} from "./redux/redux-store";
 import App from "./App";
 
 
@@ -15,6 +15,7 @@ let renderEntireTree = (state: RootDataType)=> {
                 <GlobalStyled/>
                 <App state={state}
                      dispatch={store.dispatch.bind(store)}
+                     store = {store}
                 />
             </BrowserRouter>
         </React.StrictMode>,
@@ -22,4 +23,7 @@ let renderEntireTree = (state: RootDataType)=> {
     );
 }
 renderEntireTree(store.getState())
-store.subscribe(renderEntireTree)
+store.subscribe(()=> {
+    let state = store.getState()
+    renderEntireTree(state)
+})
