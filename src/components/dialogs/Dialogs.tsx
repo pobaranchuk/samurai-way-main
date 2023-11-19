@@ -5,14 +5,12 @@ import {MessageStyled} from "./Message";
 import {NavLink} from "react-router-dom";
 import {DialogsStyled, MenuDialogsStyled} from "./DialogsStyled";
 import {
-    ActionsTypes,
+    DialogPageType,
     DialogType,
     MessageType
 } from "../../redux/store";
 import {InputStyled} from "../profile/ProfileStyled";
 import {Button} from "../buttons/ButtonStyled";
-import {SendMessageCreator, UpdateNewMessageBodyCreator} from "../../redux/dialog-reducer";
-import {StoreType} from "../../redux/redux-store";
 
 export type DialogItemType = {
     dialog: DialogType
@@ -34,24 +32,26 @@ const MessageItem: React.FC<MessageItemType> = ({message}) => {
 }
 
 type DialogsDataType = {
-    dispatch: (action: ActionsTypes) => void
-    store: StoreType
+    updateNewMessageBody: (body: string)=> void
+    sendMessage: ()=> void
+    dialogPage: DialogPageType
 
 }
 
-const Dialogs: React.FC<DialogsDataType> = ({dispatch, store}) => {
+const Dialogs: React.FC<DialogsDataType> = ({updateNewMessageBody, sendMessage, dialogPage}) => {
 
-    let state = store.getState().dialogPage
+    let state = dialogPage
 
     const dialogElement = state.dialogs.map(dialog => <DialogItem dialog={dialog}/>)
     const messagesElement = state.messages.map(message => <MessageItem message={message}/>)
 
-    const onMessageBodyChangeHandler = (e: ChangeEvent<HTMLInputElement>) => {
-        let body = e.currentTarget.value
-        dispatch(UpdateNewMessageBodyCreator(body))
+    const onSendMessageClick = () => {
+        sendMessage()
     }
-    const addMessageHandler = () => {
-        dispatch(SendMessageCreator(state.newMessageBody))
+
+    const onNewMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        let body = e.currentTarget.value
+        updateNewMessageBody(body)
     }
 
     return (
@@ -59,8 +59,8 @@ const Dialogs: React.FC<DialogsDataType> = ({dispatch, store}) => {
             <DialogsStyled>{dialogElement}</DialogsStyled>
             <MessagesStyled>
                 {messagesElement}
-                <InputStyled value={state.newMessageBody} onChange={onMessageBodyChangeHandler}/>
-                <Button onClick={addMessageHandler}>Send Message</Button>
+                <InputStyled value={state.newMessageBody} onChange={onNewMessageChange}/>
+                <Button onClick={onSendMessageClick}>Send Message</Button>
             </MessagesStyled>
 
         </MenuDialogsStyled>

@@ -1,6 +1,6 @@
 import React from 'react';
 import {PostStyled} from "./PostStyled";
-import {MiniAvatar} from "../../avatar/MiniAvatar";
+import {MiniAvatar} from "../../../avatar/MiniAvatar";
 
 type PostType = {
     id: string

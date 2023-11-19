@@ -1,5 +1,5 @@
 import {v1} from "uuid";
-import {AddPostActionCreator, ChangeNewTextActionCreator, ProfileReducer} from "./profile-reducer";
+import {AddPostActionCreator, UpdateNewTextActionCreator, ProfileReducer} from "./profile-reducer";
 import {DialogReducer, SendMessageCreator, UpdateNewMessageBodyCreator} from "./dialog-reducer";
 
 export type PostType = {
@@ -43,7 +43,7 @@ export type StoreType = {
 }
 
 export type ActionsTypes = ReturnType<typeof AddPostActionCreator>
-    | ReturnType<typeof ChangeNewTextActionCreator>
+    | ReturnType<typeof UpdateNewTextActionCreator>
     | ReturnType<typeof UpdateNewMessageBodyCreator>
     | ReturnType<typeof SendMessageCreator>
 

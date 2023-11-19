@@ -1,21 +1,21 @@
 import React from 'react';
 import {ProfileStyled} from "./ProfileStyled";
 import {ProfileInfo} from "./ProfileInfo/ProfileInfo";
-import Posts from "./MyPosts/Posts";
+import MyPosts from "./MyPosts/MyPosts";
 import {ActionsTypes, ProfilePageType} from "../../redux/store";
+import {StoreType} from "../../redux/redux-store";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 type ProfileDataType = {
-    dispatch: (action: ActionsTypes)=> void
-    profilePage: ProfilePageType
+    store: StoreType
 }
 
-export const Profile: React.FC<ProfileDataType> = ({profilePage,dispatch}) => {
+export const Profile: React.FC<ProfileDataType> = ({store}) => {
 
     return (
         <ProfileStyled>
             <ProfileInfo/>
-            <Posts profilePage={profilePage}
-                   dispatch={dispatch}/>
+            <MyPostsContainer store={store}/>
         </ProfileStyled>
     );
 };
