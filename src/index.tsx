@@ -1,15 +1,14 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
-import {RootDataType} from './redux/store';
 import {GlobalStyled} from "./components/Global.styled";
 import {BrowserRouter} from "react-router-dom";
 import {store} from "./redux/redux-store";
 import App from "./App";
-import StoreContext, {Provider} from "./StoreContext";
+import {Provider} from "react-redux";
 
 
-let renderEntireTree = (state: RootDataType)=> {
+let renderEntireTree = ()=> {
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
@@ -17,14 +16,12 @@ let renderEntireTree = (state: RootDataType)=> {
                 <Provider store={store}>
                     <App />
                 </Provider>
-
             </BrowserRouter>
         </React.StrictMode>,
         document.getElementById('root')
     );
 }
-renderEntireTree(store.getState())
+renderEntireTree()
 store.subscribe(()=> {
-    let state = store.getState()
-    renderEntireTree(state)
+    renderEntireTree()
 })

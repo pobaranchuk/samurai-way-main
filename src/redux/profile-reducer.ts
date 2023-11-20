@@ -1,9 +1,8 @@
 import {v1} from "uuid";
 
-export const AddPostActionCreator = (newPostText: string) => {
+export const AddPostActionCreator = () => {
     return {
-        type: "ADD-POST",
-        newPostText: newPostText
+        type: "ADD-POST"
     } as const
 }
 export const UpdateNewTextActionCreator = (newText: string) => {

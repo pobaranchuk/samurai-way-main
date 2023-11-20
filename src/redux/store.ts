@@ -31,7 +31,7 @@ export type DialogPageType = {
 
 export type RootDataType = {
     profilePage: ProfilePageType
-    dialogPage: DialogPageType
+    dialogsPage: DialogPageType
 }
 
 export type StoreType = {
@@ -62,7 +62,7 @@ export const store: StoreType = {
             ],
             newPostText: ""
         },
-        dialogPage: {
+        dialogsPage: {
             dialogs: [
                 {id: v1(), name: "Slava"},
                 {id: v1(), name: "Andrey"},
@@ -98,28 +98,4 @@ export const store: StoreType = {
 
         this._callSubscriber(this._state);
     }
-
-    // dispatch(action) {
-    //     if (action.type === "ADD-POST") {
-    //         let newPost: PostType = {
-    //             id: v1(),
-    //             postbody: action.newPostText,
-    //             likesCount: 0
-    //         }
-    //         this._state.profilePage.posts.push(newPost)
-    //         this._state.profilePage.newPostText = ""
-    //         this._callSubscriber(this._state)
-    //     } else if (action.type === "UPDATE-NEW-POST-TEXT") {
-    //         this._state.profilePage.newPostText = action.newText
-    //         this._callSubscriber(this._state)
-    //     } else if (action.type === "UPDATE-NEW-MESSAGE-BODY") {
-    //         this._state.dialogPage.newMessageBody = action.body
-    //         this._callSubscriber(this._state)
-    //     } else if (action.type === "SEND-MESSAGE") {
-    //         let body = this._state.dialogPage.newMessageBody
-    //         this._state.dialogPage.newMessageBody = ""
-    //         this._state.dialogPage.messages.push({id: v1(), message: body})
-    //         this._callSubscriber(this._state)
-    //     }
-    // }
 }

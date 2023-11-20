@@ -5,12 +5,12 @@ import {MessageStyled} from "./Message";
 import {NavLink} from "react-router-dom";
 import {DialogsStyled, MenuDialogsStyled} from "./DialogsStyled";
 import {
-    DialogPageType,
     DialogType,
     MessageType
 } from "../../redux/store";
 import {InputStyled} from "../profile/ProfileStyled";
 import {Button} from "../buttons/ButtonStyled";
+import {DialogsPropsType} from "./DialogsContainer";
 
 export type DialogItemType = {
     dialog: DialogType
@@ -31,16 +31,9 @@ const MessageItem: React.FC<MessageItemType> = ({message}) => {
     )
 }
 
-type DialogsDataType = {
-    updateNewMessageBody: (body: string)=> void
-    sendMessage: ()=> void
-    dialogPage: DialogPageType
+const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage, updateNewMessageBody}) => {
 
-}
-
-const Dialogs: React.FC<DialogsDataType> = ({updateNewMessageBody, sendMessage, dialogPage}) => {
-
-    let state = dialogPage
+    let state = dialogsPage
 
     const dialogElement = state.dialogs.map(dialog => <DialogItem dialog={dialog}/>)
     const messagesElement = state.messages.map(message => <MessageItem message={message}/>)
