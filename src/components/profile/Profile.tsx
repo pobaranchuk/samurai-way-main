@@ -15,7 +15,7 @@ export const Profile: React.FC<ProfileDataType> = ({store}) => {
     return (
         <ProfileStyled>
             <ProfileInfo/>
-            <MyPostsContainer store={store}/>
+            <MyPostsContainer/>
         </ProfileStyled>
     );
 };

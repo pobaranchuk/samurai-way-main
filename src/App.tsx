@@ -18,7 +18,7 @@ export type StateType = {
     store: StoreType
 }
 
-const App: React.FC<StateType> = ({store}) => {
+const App: React.FC<StateType> = ({dispatch, store}) => {
     return (
         <>
             <Header/>
@@ -26,10 +26,10 @@ const App: React.FC<StateType> = ({store}) => {
                 <NavBar/>
                 <Routes>
                     <Route path={"/profile"} element={
-                        <Profile store={store}/>}
+                        <Profile/>}
                     />
                     <Route path={"/dialogs/*"} element={
-                        <DialogsContainer store={store}/>}
+                        <DialogsContainer/>}
                     />
                     <Route path={"/news"} element={<News/>}/>
                     <Route path={"/friends"} element={<Friends/>}/>
