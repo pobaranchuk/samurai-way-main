@@ -7,21 +7,14 @@ import {store} from "./redux/redux-store";
 import App from "./App";
 import {Provider} from "react-redux";
 
-
-let renderEntireTree = ()=> {
-    ReactDOM.render(
-        <React.StrictMode>
-            <BrowserRouter>
-                <GlobalStyled/>
-                <Provider store={store}>
-                    <App />
-                </Provider>
-            </BrowserRouter>
-        </React.StrictMode>,
-        document.getElementById('root')
-    );
-}
-renderEntireTree()
-store.subscribe(()=> {
-    renderEntireTree()
-})
+ReactDOM.render(
+    <React.StrictMode>
+        <BrowserRouter>
+            <GlobalStyled/>
+            <Provider store={store}>
+                <App/>
+            </Provider>
+        </BrowserRouter>
+    </React.StrictMode>,
+    document.getElementById('root')
+)
