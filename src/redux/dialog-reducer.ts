@@ -13,14 +13,14 @@ export const SendMessageCreator = () => {
     } as const
 }
 
-type MessagesType = {
-    id: string;
-    message: string;
-};
 type DialogsType = {
     id: string;
     name: string;
-};
+}
+type MessagesType = {
+    id: string;
+    message: string;
+}
 
 let initialState = {
     dialogs: [

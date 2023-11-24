@@ -30,8 +30,7 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType=> {
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType  => {
     return {
         updateNewPostText: (text: string)=> {
-            let action = UpdateNewTextActionCreator(text)
-            dispatch(action)
+            dispatch(UpdateNewTextActionCreator(text))
         },
         addPost: ()=> {
             dispatch(AddPostActionCreator())

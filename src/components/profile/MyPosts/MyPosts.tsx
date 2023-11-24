@@ -7,17 +7,17 @@ import {ActionsTypes, ProfilePageType} from "../../../redux/store";
 import {AddPostActionCreator, UpdateNewTextActionCreator} from "../../../redux/profile-reducer";
 import {ProfilePropsType} from "./MyPostsContainer";
 
-// type PostDataType = {
-//     updateNewPostText: (text: string) => void
-//     addPost: () => void
-//     posts: PostType[]
-//     newPostText: string
-// }
+type PostDataType = {
+    updateNewPostText: (text: string) => void
+    addPost: () => void
+    posts: PostType[]
+    newPostText: string
+}
 
 
 export const MyPosts: React.FC<ProfilePropsType> = ({profilePage, updateNewPostText, addPost}) => {
 
-    let posts = profilePage.posts
+    const posts = profilePage.posts
     const postElement = posts.map(post =>
         <Post key={post.id} id={post.id} postbody={post.postbody} likesCount={post.likesCount}/>)
 
