@@ -1,16 +1,33 @@
-import {AddPostActionCreator, UpdateNewTextActionCreator} from "../../../redux/profile-reducer";
+import {
+    AddPostActionCreator,
+    InitialProfileStateType,
+    UpdateNewTextActionCreator
+} from "../../../redux/profile-reducer";
 import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppRootStateType} from "../../../redux/redux-store";
+import {Dispatch} from "redux";
+import {InitialDialogStateType} from "../../../redux/dialog-reducer";
 
-const mapStateToProps = (state: AppRootStateType)=> {
+type mapStateToPropsType = {
+    profilePage: InitialProfileStateType
+}
+
+type mapDispatchToPropsType = {
+    updateNewPostText: (text: string) => void
+    addPost: () => void
+}
+
+
+export type ProfilePropsType = mapStateToPropsType & mapDispatchToPropsType
+
+const mapStateToProps = (state: AppRootStateType): mapStateToPropsType=> {
     return {
-        posts: state.profilePage.posts,
-        newPostText: state.profilePage.newPostText
+        profilePage: state.profilePage
     }
 }
 
-const mapDispatchToProps = (dispatch)=> {
+const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType  => {
     return {
         updateNewPostText: (text: string)=> {
             let action = UpdateNewTextActionCreator(text)
@@ -21,6 +38,8 @@ const mapDispatchToProps = (dispatch)=> {
         }
     }
 }
+
+
 
 const MyPostsContainer = connect(mapStateToProps, mapDispatchToProps)(MyPosts)
 

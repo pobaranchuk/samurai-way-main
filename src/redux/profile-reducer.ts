@@ -24,19 +24,31 @@ let initialState = {
     newPostText: ""
 }
 
+export type InitialProfileStateType = typeof initialState
+
 export const ProfileReducer = (state = initialState, action) => {
     switch (action.type) {
         case "ADD-POST":
-            state.posts.push({id: v1(), postbody: state.newPostText, likesCount: 0});
+            let newPost = {id: v1(), postbody: state.newPostText, likesCount: 0}
+            //state.posts.push();
             state.newPostText = "";
-            return state
+            return {
+                ...state,
+                posts: {
+                    ...state.posts,
+                    newPost
+                }
+            }
 
         case "UPDATE-NEW-POST-TEXT":
-            state.newPostText = action.newText;
-            return state
+            //state.newPostText = action.newText;
+            return {
+                ...state,
+                newPostText: action.newText
+            }
 
         default:
             // Handle unknown action type
-            return state
+            return {...state}
     }
 };

@@ -8,7 +8,7 @@ export const Profile = () => {
     return (
         <ProfileStyled>
             <ProfileInfo/>
-            <MyPostsContainer/>
+            <MyPostsContainer />
         </ProfileStyled>
     );
 };

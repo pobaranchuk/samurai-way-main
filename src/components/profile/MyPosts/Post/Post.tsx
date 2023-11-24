@@ -2,7 +2,7 @@ import React from 'react';
 import {PostStyled} from "./PostStyled";
 import {MiniAvatar} from "../../../avatar/MiniAvatar";
 
-type PostType = {
+export type PostType = {
     id: string
     postbody: string
     likesCount: number
