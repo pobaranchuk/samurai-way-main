@@ -37,23 +37,21 @@ export const ProfileReducer = (state: InitialProfileStateType = initialState, ac
     switch (action.type) {
         case "ADD-POST": {
             let newPost = {id: v1(), postbody: state.newPostText, likesCount: 0}
-            //state.posts.push();
-            let stateCopy = {...state}
-            stateCopy.posts = [...state.posts]
-            stateCopy.posts.push(newPost)
-            stateCopy.newPostText = "";
-            return stateCopy
+            return {
+                ...state,
+                posts: [...state.posts, newPost],
+                newPostText: ""
+            }
         }
 
         case "UPDATE-NEW-POST-TEXT": {
-            let stateCopy = {...state}
-            stateCopy.newPostText = action.newText
-            return stateCopy
+            return {
+                ...state,
+                newPostText: action.newText
+            }
         }
 
-
         default:
-            // Handle unknown action type
             return {...state}
     }
-};
+}

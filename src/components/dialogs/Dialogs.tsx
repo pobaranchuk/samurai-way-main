@@ -35,8 +35,8 @@ const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage, updateNe
 
     let state = dialogsPage
 
-    const dialogElement = state.dialogs.map(dialog => <DialogItem dialog={dialog}/>)
-    const messagesElement = state.messages.map(message => <MessageItem message={message}/>)
+    const dialogElement = state.dialogs.map(dialog => <DialogItem key={dialog.id} dialog={dialog}/>)
+    const messagesElement = state.messages.map(message => <MessageItem key={message.id} message={message}/>)
 
     const onSendMessageClick = () => {
         sendMessage()

@@ -1,18 +1,9 @@
 import React, {ChangeEvent} from 'react';
 import {Button} from "../../buttons/ButtonStyled";
-import {Post, PostType} from "././Post/Post";
+import {Post} from "./Post/Post";
 import {InputStyled} from "../ProfileStyled";
 import {PostsStyled} from "./PostsStyled";
-import {ActionsTypes, ProfilePageType} from "../../../redux/store";
-import {AddPostActionCreator, UpdateNewTextActionCreator} from "../../../redux/profile-reducer";
 import {ProfilePropsType} from "./MyPostsContainer";
-
-type PostDataType = {
-    updateNewPostText: (text: string) => void
-    addPost: () => void
-    posts: PostType[]
-    newPostText: string
-}
 
 
 export const MyPosts: React.FC<ProfilePropsType> = ({profilePage, updateNewPostText, addPost}) => {
