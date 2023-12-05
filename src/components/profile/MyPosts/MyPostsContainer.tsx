@@ -7,7 +7,6 @@ import MyPosts from "./MyPosts";
 import {connect} from "react-redux";
 import {AppRootStateType} from "../../../redux/redux-store";
 import {Dispatch} from "redux";
-import {InitialDialogStateType} from "../../../redux/dialog-reducer";
 
 type mapStateToPropsType = {
     profilePage: InitialProfileStateType
