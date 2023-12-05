@@ -9,6 +9,7 @@ export const NavBar = () => {
             <li><button><NavLink to={"/friends"}>Friends</NavLink></button></li>
             <li><button><NavLink to={"/dialogs"}>Dialogs</NavLink></button></li>
             <li><button><NavLink to={"/news"}>News</NavLink></button></li>
+            <li><button><NavLink to={"/users"}>Users</NavLink></button></li>
             <li><button><NavLink to={"/settings"}>Settings</NavLink></button></li>
         </NavBarStyled>
     );

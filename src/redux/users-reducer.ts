@@ -1,5 +1,3 @@
-import {v1} from "uuid";
-
 export const followActionCreator = (userId: string) => {
     return {
         type: "FOLLOW",
@@ -25,6 +23,7 @@ type UserLocationType = {
 }
 export type UsersType = {
     id: string
+    photoUrl: string,
     followed: boolean
     fullName: string
     status: string
@@ -36,34 +35,13 @@ type UserReducerActionsTypes = ReturnType<typeof followActionCreator>
     | ReturnType<typeof setUsersActionCreator>
 
 let initialState = {
-    users: [
-        {
-            id: v1(),
-            followed: false,
-            fullName: "Slava",
-            status: "Yo how are you",
-            location: {city: "Warsaw", country: "Poland"}
-        },
-        {
-            id: v1(),
-            followed: true,
-            fullName: "Mikas",
-            status: "Im a boss",
-            location: {city: "Kraków", country: "Poland"}
-        },
-        {
-            id: v1(),
-            followed: false,
-            fullName: "Fredo",
-            status: "Yo how are you?",
-            location: {city: "Gdansk", country: "Poland"}
-        }
-    ] as UsersType[]
+    users: [] as UsersType[]
 }
 
 export type InitialUsersStateType = typeof initialState
 
 export const UserReducer = (state: InitialUsersStateType = initialState, action: UserReducerActionsTypes) => {
+    debugger
     switch (action.type) {
         case "FOLLOW":
             return {
