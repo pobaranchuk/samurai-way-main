@@ -1,4 +1,22 @@
+.users{
+    background-color: #5BD5A9;
+    display: flex;
+    justify-content: flex-start;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.user{
+    display: flex;
+    justify-content: center;
+}
 .userPhoto {
     width: 150px;
     height: 150px;
+    margin: 2px;
 }
+
+.selectedPage{
+    font-weight: bold;
+}
+

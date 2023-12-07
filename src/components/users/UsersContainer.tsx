@@ -1,7 +1,7 @@
 import {connect} from "react-redux";
 import {
     followActionCreator,
-    InitialUsersStateType,
+    InitialUsersStateType, setCurrentPageActionCreator, setTotalUsersCountActionCreator,
     setUsersActionCreator,
     unfollowActionCreator, UsersType
 } from "../../redux/users-reducer";
@@ -17,9 +17,11 @@ type mapDispatchToPropsType = {
     follow: (userId: number) => void
     unfollow: (userId: number) => void
     setUsers: (users: UsersType[]) => void
+    setCurrentPage: (currentPage: number) => void
+    setTotalUsersCount: (totalCount: number) => void
 }
 
-export type UsersPropsType =  mapStateToPropsType & mapDispatchToPropsType
+export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
     return {
@@ -37,6 +39,12 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         },
         setUsers: (users: UsersType[]) => {
             dispatch(setUsersActionCreator(users))
+        },
+        setCurrentPage: (currentPage: number) => {
+            dispatch(setCurrentPageActionCreator(currentPage))
+        },
+        setTotalUsersCount: (totalCount: number) => {
+            dispatch(setTotalUsersCountActionCreator(totalCount))
         }
     }
 }
