@@ -1,5 +1,4 @@
 import {connect} from "react-redux";
-import {Users} from "./Users";
 import {
     followActionCreator,
     InitialUsersStateType,
@@ -15,8 +14,8 @@ type mapStateToPropsType = {
 }
 
 type mapDispatchToPropsType = {
-    follow: (userId: string) => void
-    unfollow: (userId: string) => void
+    follow: (userId: number) => void
+    unfollow: (userId: number) => void
     setUsers: (users: UsersType[]) => void
 }
 
@@ -30,16 +29,15 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        follow: (userId: string) => {
+        follow: (userId: number) => {
             dispatch(followActionCreator(userId))
         },
-        unfollow: (userId: string) => {
+        unfollow: (userId: number) => {
             dispatch(unfollowActionCreator(userId))
         },
         setUsers: (users: UsersType[]) => {
             dispatch(setUsersActionCreator(users))
         }
-
     }
 }
 

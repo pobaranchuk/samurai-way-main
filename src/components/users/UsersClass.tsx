@@ -1,16 +1,13 @@
 import React from 'react'
-import {UsersPropsType} from "./UsersContainer";
 import styles from './users.module.css'
-import {v1} from "uuid";
 import axios from "axios";
 import default_avatar from "./../../asets/images/default-avatar.png"
+import {UsersPropsType} from "./UsersContainer";
 
-class UsersClass extends React.Component<any, any> {
-
-    constructor(props: any) {
+class UsersClass extends React.Component<UsersPropsType, any> {
+    constructor(props: UsersPropsType) {
         super(props);
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
-            debugger
             this.props.setUsers(response.data.items)
         })
     }
@@ -18,12 +15,12 @@ class UsersClass extends React.Component<any, any> {
     render() {
         return <div>
             {
-                this.props.usersPage.users.map(user => <div key={user.id}>
+                this.props.usersPage.users.map(user  => <div key={user.id}>
                 <span>
-                    <div>
+                    <div key={user.id}>
                         <img src={user.photos.small || default_avatar} className={styles.userPhoto} alt={"Avatar"}/>
                     </div>
-                    <div>
+                    <div key={user.id}>
                         {user.followed ?
                             <button onClick={() => {
                                 this.props.unfollow(user.id)
@@ -32,8 +29,8 @@ class UsersClass extends React.Component<any, any> {
                                 this.props.follow(user.id)
                             }}>Follow</button>}
                     </div>
-                </span>
-                    <span>
+                </span >
+                <span>
                     <span>
                         <div>{user.name}</div>
                         <div>{user.status}</div>
@@ -49,7 +46,6 @@ class UsersClass extends React.Component<any, any> {
             }
         </div>
     }
-
 }
 
 export default UsersClass

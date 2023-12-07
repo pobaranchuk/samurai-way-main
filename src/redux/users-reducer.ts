@@ -1,10 +1,10 @@
-export const followActionCreator = (userId: string) => {
+export const followActionCreator = (userId: number) => {
     return {
         type: "FOLLOW",
         userId
     } as const
 }
-export const unfollowActionCreator = (userId: string) => {
+export const unfollowActionCreator = (userId: number) => {
     return {
         type: "UNFOLLOW",
         userId
@@ -17,17 +17,13 @@ export const setUsersActionCreator = (users: UsersType[]) => {
     } as const
 }
 
-type UserLocationType = {
-    city: string
-    country: string
-}
 export type UsersType = {
-    id: string
-    photoUrl: string,
-    followed: boolean
-    fullName: string
+    name: string
+    id: number
+    uniqueUrlName: string
+    photos: {small: string, large: string}
     status: string
-    location: UserLocationType
+    followed: boolean
 }
 
 type UserReducerActionsTypes = ReturnType<typeof followActionCreator>
