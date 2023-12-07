@@ -41,7 +41,6 @@ let initialState = {
 export type InitialUsersStateType = typeof initialState
 
 export const UserReducer = (state: InitialUsersStateType = initialState, action: UserReducerActionsTypes) => {
-    debugger
     switch (action.type) {
         case "FOLLOW":
             return {
