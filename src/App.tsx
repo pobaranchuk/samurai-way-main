@@ -10,7 +10,6 @@ import {Settings} from "./components/settings/Settings";
 import {Friends} from "./components/friends/Friends";
 
 import DialogsContainer from "./components/dialogs/DialogsContainer";
-import {Users} from "./components/users/Users";
 import UsersContainer from "./components/users/UsersContainer";
 
 const App = () => {

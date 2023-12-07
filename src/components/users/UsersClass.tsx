@@ -5,8 +5,7 @@ import default_avatar from "./../../asets/images/default-avatar.png"
 import {UsersPropsType} from "./UsersContainer";
 
 class UsersClass extends React.Component<UsersPropsType, any> {
-    constructor(props: UsersPropsType) {
-        super(props);
+    componentDidMount() {
         axios.get("https://social-network.samuraijs.com/api/1.0/users").then(response => {
             this.props.setUsers(response.data.items)
         })
