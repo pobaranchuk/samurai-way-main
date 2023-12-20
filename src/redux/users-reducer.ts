@@ -1,35 +1,35 @@
-export const followActionCreator = (userId: number) => {
+export const follow = (userId: number) => {
     return {
         type: "FOLLOW",
         userId
     } as const
 }
-export const unfollowActionCreator = (userId: number) => {
+export const unfollow = (userId: number) => {
     return {
         type: "UNFOLLOW",
         userId
     } as const
 }
-export const setUsersActionCreator = (users: UsersType[]) => {
+export const setUsers = (users: UsersType[]) => {
     return {
         type: "SET_USERS",
         users
     } as const
 }
-export const setCurrentPageActionCreator = (currentPage: number) => {
+export const setCurrentPage = (currentPage: number) => {
     return {
         type: "SET_CURRENT_PAGE",
         currentPage
     } as const
 }
-export const setTotalUsersCountActionCreator = (count: number) => {
+export const setTotalUsersCount = (count: number) => {
     return {
         type: "SET_TOTAL_USERS_COUNT",
         count
     } as const
 }
 
-export const setIsFetchingActionCreator = (isFetching: boolean) => {
+export const setToggleIsFetching = (isFetching: boolean) => {
     return {
         type: "TOGGLE-IS-FETCHING",
         isFetching
@@ -45,12 +45,12 @@ export type UsersType = {
     followed: boolean
 }
 
-type UserReducerActionsTypes = ReturnType<typeof followActionCreator>
-    | ReturnType<typeof unfollowActionCreator>
-    | ReturnType<typeof setUsersActionCreator>
-    | ReturnType<typeof setCurrentPageActionCreator>
-    | ReturnType<typeof setTotalUsersCountActionCreator>
-    | ReturnType<typeof setIsFetchingActionCreator>
+type UserReducerActionsTypes = ReturnType<typeof follow>
+    | ReturnType<typeof unfollow>
+    | ReturnType<typeof setUsers>
+    | ReturnType<typeof setCurrentPage>
+    | ReturnType<typeof setTotalUsersCount>
+    | ReturnType<typeof setToggleIsFetching>
 
 let initialState = {
     users: [] as UsersType[],

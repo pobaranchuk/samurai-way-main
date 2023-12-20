@@ -19,12 +19,8 @@ const App = () => {
             <AppWrapperStyled>
                 <NavBar/>
                 <Routes>
-                    <Route path={"/profile"} element={
-                        <Profile />}
-                    />
-                    <Route path={"/dialogs/*"} element={
-                        <DialogsContainer/>}
-                    />
+                    <Route path={"/profile"} element={<Profile/>}/>
+                    <Route path={"/dialogs/*"} element={<DialogsContainer/>}/>
                     <Route path={"/news"} element={<News/>}/>
                     <Route path={"/friends"} element={<Friends/>}/>
                     <Route path={"/settings"} element={<Settings/>}/>
