@@ -2,6 +2,7 @@ import React from 'react';
 import styles from "./users.module.css";
 import default_avatar from "../../asets/images/default-avatar.png";
 import {UsersPropsType} from "./UsersContainer";
+import {NavLink} from "react-router-dom";
 
 type UsersContainerPropsType = Omit<UsersPropsType, 'setCurrentPage' | 'setUsers' | 'setTotalUsersCount'| 'setToggleIsFetching'>  & {
     onPageChanged: (pageNumber: number) => void
@@ -41,7 +42,9 @@ const Users = (props: UsersContainerPropsType) => {
                     props.usersPage.users.map(user => <div key={user.id} className={styles.user}>
                 <span>
                     <div key={user.id}>
-                        <img src={user.photos.small || default_avatar} className={styles.userPhoto} alt={"Avatar"}/>
+                        <NavLink to={`/profile/${user.id}`}>
+                            <img src={user.photos.small || default_avatar} className={styles.userPhoto} alt={"Avatar"}/>
+                        </NavLink>
                     </div>
                     <div key={user.id}>
                         {user.followed ?

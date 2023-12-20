@@ -1,5 +1,4 @@
 import {v1} from "uuid";
-import {ActionsTypes} from "./store";
 
 export const UpdateNewMessageBodyCreator = (newText: string) => {
     return {
@@ -13,11 +12,11 @@ export const SendMessageCreator = () => {
     } as const
 }
 
-type DialogsType = {
+export type DialogsType = {
     id: string;
     name: string;
 }
-type MessagesType = {
+export type MessagesType = {
     id: string;
     message: string;
 }
@@ -43,6 +42,10 @@ let initialState = {
 }
 
 export type InitialDialogStateType = typeof initialState
+
+type ActionsTypes =
+    | ReturnType<typeof UpdateNewMessageBodyCreator>
+    | ReturnType<typeof SendMessageCreator>
 
 export const DialogReducer = (state: InitialDialogStateType = initialState, action: ActionsTypes): InitialDialogStateType => {
 

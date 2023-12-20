@@ -11,6 +11,7 @@ import {Friends} from "./components/friends/Friends";
 
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
+import ProfileContainer from "./components/profile/ProfileContainer";
 
 const App = () => {
     return (
@@ -19,7 +20,7 @@ const App = () => {
             <AppWrapperStyled>
                 <NavBar/>
                 <Routes>
-                    <Route path={"/profile"} element={<Profile/>}/>
+                    <Route path={"/profile"} element={<ProfileContainer/>}/>
                     <Route path={"/dialogs/*"} element={<DialogsContainer/>}/>
                     <Route path={"/news"} element={<News/>}/>
                     <Route path={"/friends"} element={<Friends/>}/>

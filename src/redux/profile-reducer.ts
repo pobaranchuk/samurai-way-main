@@ -1,5 +1,4 @@
 import {v1} from "uuid";
-import {ActionsTypes} from "./store";
 
 export const AddPostActionCreator = () => {
     return {
@@ -13,12 +12,45 @@ export const UpdateNewTextActionCreator = (newText: string) => {
     } as const
 }
 
+export const setUserProfile = (profile: UserProfileType) => {
+    return {
+        type: "SET-USER-PROFILE",
+        profile
+    } as const
+}
+
+type ActionsTypes = ReturnType<typeof AddPostActionCreator>
+    | ReturnType<typeof UpdateNewTextActionCreator>
+    | ReturnType<typeof setUserProfile>
+
 
 type PostsType = {
     id: string
     postbody: string
     likesCount: number
 }
+
+export type UserProfileType = {
+    userId: number;
+    lookingForAJob: boolean;
+    lookingForAJobDescription: string;
+    fullName: string;
+    contacts: {
+        github: string;
+        vk: string;
+        facebook: string;
+        instagram: string;
+        twitter: string;
+        website: string;
+        youtube: string;
+        mainLink: string;
+    };
+    photos: {
+        small: string | null;
+        large: string | null;
+    };
+};
+
 let initialState = {
     posts: [
         {id: v1(), postbody: "Yo how are you", likesCount: 112},
@@ -28,7 +60,8 @@ let initialState = {
         {id: v1(), postbody: "Yo how are you", likesCount: 109},
         {id: v1(), postbody: "Yo how are you", likesCount: 199}
     ] as PostsType[],
-    newPostText: ""
+    newPostText: "",
+    profile: null as UserProfileType
 }
 
 export type InitialProfileStateType = typeof initialState
@@ -48,6 +81,13 @@ export const ProfileReducer = (state: InitialProfileStateType = initialState, ac
             return {
                 ...state,
                 newPostText: action.newText
+            }
+        }
+        case "SET-USER-PROFILE": {
+            return {
+                ...state,
+                profile: action.profile
+
             }
         }
 

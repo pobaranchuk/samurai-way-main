@@ -4,20 +4,17 @@ import {MessagesStyled} from "./MessagesStyled";
 import {MessageStyled} from "./Message";
 import {NavLink} from "react-router-dom";
 import {DialogsStyled, MenuDialogsStyled} from "./DialogsStyled";
-import {
-    DialogType,
-    MessageType
-} from "../../redux/store";
 import {InputStyled} from "../profile/ProfileStyled";
 import {Button} from "../buttons/ButtonStyled";
 import {DialogsPropsType} from "./DialogsContainer";
+import {DialogsType, MessagesType} from "../../redux/dialog-reducer";
 
 export type DialogItemType = {
-    dialog: DialogType
+    dialog: DialogsType
 }
 
 export type MessageItemType = {
-    message: MessageType
+    message: MessagesType
 }
 
 const DialogItem: React.FC<DialogItemType> = ({dialog}) => {
