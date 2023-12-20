@@ -12,8 +12,8 @@ export const Profile = (props: ProfileType) => {
 
     return (
         <ProfileStyled>
-            <ProfileInfo profileInfo ={ props.profile}/>
-            <MyPostsContainer />
+            <ProfileInfo profileInfo={props.profile}/>
+            <MyPostsContainer/>
         </ProfileStyled>
     );
 };
