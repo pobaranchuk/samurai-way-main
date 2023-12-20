@@ -3,7 +3,7 @@ import styles from "./users.module.css";
 import default_avatar from "../../asets/images/default-avatar.png";
 import {UsersPropsType} from "./UsersContainer";
 
-type UsersContainerPropsType = Omit<UsersPropsType, 'setCurrentPage' | 'setUsers' | 'setTotalUsersCount'>  & {
+type UsersContainerPropsType = Omit<UsersPropsType, 'setCurrentPage' | 'setUsers' | 'setTotalUsersCount'| 'toggleIsFetching'>  & {
     onPageChanged: (pageNumber: number) => void
 }
 
