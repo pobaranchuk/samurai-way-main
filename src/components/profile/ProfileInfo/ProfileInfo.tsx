@@ -1,5 +1,4 @@
 import React from 'react';
-import {MiniAvatar} from "../../avatar/MiniAvatar";
 import {ProfileInfoStyled} from "./ProfileInfoStyled";
 import {UserProfileType} from "../../../redux/profile-reducer";
 import Preloader from "../../common/preloader/Preloader";
@@ -14,7 +13,9 @@ export const ProfileInfo = (props: ProfileInfoType) => {
     }
     return (
         <ProfileInfoStyled>
-            <MiniAvatar/>
+            <div>
+                <img src={props.profileInfo.photos.small} alt={"Avatar"}/>
+            </div>
             <div>
                 Avatar + description
                 {props.profileInfo.fullName}
