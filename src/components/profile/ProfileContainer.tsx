@@ -44,4 +44,3 @@ export const withRouter = <T, >(Component: ComponentType<T>) => {
 const WithURLDataContainerComponent = withRouter(ProfileContainer)
 
 export default connect(mapStateToProps, {setUserProfile})(WithURLDataContainerComponent)
-

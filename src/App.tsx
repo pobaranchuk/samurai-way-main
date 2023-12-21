@@ -1,6 +1,5 @@
 import React from 'react';
 import './App.css';
-import {Header} from "./components/header/Header";
 import {NavBar} from "./components/navigation/NavBar";
 import {AppWrapperStyled} from "./components/AppWrapper";
 import {Route, Routes} from "react-router-dom";
@@ -11,11 +10,12 @@ import {Friends} from "./components/friends/Friends";
 import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
+import HeaderContainer from "./components/header/HeaderContainer";
 
 const App = () => {
     return (
         <>
-            <Header/>
+            <HeaderContainer/>
             <AppWrapperStyled>
                 <NavBar/>
                 <Routes>

@@ -9,3 +9,6 @@ export const HeaderStyled = styled.div`
     margin: 10px;
   }
 `
+export const LoginBlockStyled = styled.div`
+    float: right;
+`
