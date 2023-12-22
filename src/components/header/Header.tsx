@@ -1,9 +1,9 @@
 import React from 'react';
 import {HeaderStyled, LoginBlockStyled} from "./HeaderStyled";
 import {NavLink} from "react-router-dom";
+import {HeaderPropsType} from "./HeaderContainer";
 
 
-type HeaderPropsType = {}
 export const Header = (props: HeaderPropsType) => {
     return (
         <HeaderStyled>
