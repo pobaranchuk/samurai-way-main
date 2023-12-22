@@ -2,8 +2,9 @@ import React from 'react';
 import {Header} from "./Header";
 import axios from "axios";
 import {connect} from "react-redux";
-import {initialAuthSateType, setAuthUserData} from "../../redux/auth-reducer";
+import {setAuthUserData} from "../../redux/auth-reducer";
 import {setToggleIsFetching} from "../../redux/users-reducer";
+import {AppRootStateType} from "../../redux/redux-store";
 
 type mapStateToPropsType = {
     isAuth: boolean
@@ -17,7 +18,6 @@ type mapDispatchToPropsType = {
 export type HeaderPropsType = mapStateToPropsType & mapDispatchToPropsType
 
 export class HeaderContainer extends React.Component<HeaderPropsType, any> {
-
     componentDidMount() {
         this.props.setToggleIsFetching(true)
         axios.get(`https://social-network.samuraijs.com/api/1.0/auth/me`,
@@ -35,7 +35,7 @@ export class HeaderContainer extends React.Component<HeaderPropsType, any> {
     }
 }
 
-const mapStateToProps = (state: initialAuthSateType) => {
+const mapStateToProps = (state: AppRootStateType) => {
     return {
         isAuth: state.auth.isAuth,
         login: state.auth.login

@@ -1,10 +1,8 @@
 const initialSate = {
-    auth: {
-        id: null as number,
-        email: null as string,
-        login: null as string,
-        isAuth: false as boolean
-    }
+    userId: null as number,
+    email: null as string,
+    login: null as string,
+    isAuth: false as boolean
 }
 export type initialAuthSateType = typeof initialSate
 
@@ -15,7 +13,7 @@ export const authReducer = (state: initialAuthSateType = initialSate, action: Ac
         case "SET-USER-DATA": {
             return {
                 ...state,
-                auth: {...action.data, isAuth: true}
+                ...action.data, isAuth: true
             }
         }
         default:
@@ -24,5 +22,7 @@ export const authReducer = (state: initialAuthSateType = initialSate, action: Ac
 }
 
 export const setAuthUserData = (userId: number, email: string, login: string) => {
-    return {type: "SET-USER-DATA" as const, data: {userId, email, login}}
+    return {
+        type: "SET-USER-DATA", data: {userId, email, login}
+    } as const
 }
