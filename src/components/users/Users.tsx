@@ -3,8 +3,11 @@ import styles from "./users.module.css";
 import default_avatar from "../../asets/images/default-avatar.png";
 import {UsersPropsType} from "./UsersContainer";
 import {NavLink} from "react-router-dom";
+import axios from "axios";
 
-type UsersContainerPropsType = Omit<UsersPropsType, 'setCurrentPage' | 'setUsers' | 'setTotalUsersCount'| 'setToggleIsFetching'>  & {
+type UsersContainerPropsType =
+    Omit<UsersPropsType, 'setCurrentPage' | 'setUsers' | 'setTotalUsersCount' | 'setToggleIsFetching'>
+    & {
     onPageChanged: (pageNumber: number) => void
 }
 
@@ -49,10 +52,20 @@ const Users = (props: UsersContainerPropsType) => {
                     <div key={user.id}>
                         {user.followed ?
                             <button onClick={() => {
-                                props.unfollow(user.id)
+                                axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {withCredentials: true})
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.unfollow(user.id)
+                                        }
+                                    })
                             }}>Unfollow</button> :
                             <button onClick={() => {
-                                props.follow(user.id)
+                                axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {withCredentials: true})
+                                    .then(response => {
+                                        if (response.data.resultCode === 0) {
+                                            props.follow(user.id)
+                                        }
+                                    })
                             }}>Follow</button>}
                     </div>
                 </span>
