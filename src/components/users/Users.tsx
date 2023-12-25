@@ -51,20 +51,24 @@ const Users = (props: UsersContainerPropsType) => {
                     </div>
                     <div key={user.id}>
                         {user.followed ?
-                            <button onClick={() => {
+                            <button disabled={props.usersPage.followingInProgress.some(id => id == user.id)} onClick={() => {
+                                props.setToggleIsFollowingProgress(true, user.id)
                                 axios.delete(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {withCredentials: true})
                                     .then(response => {
                                         if (response.data.resultCode === 0) {
                                             props.unfollow(user.id)
                                         }
+                                        props.setToggleIsFollowingProgress(false, user.id)
                                     })
                             }}>Unfollow</button> :
-                            <button onClick={() => {
+                            <button disabled={props.usersPage.followingInProgress.some(id => id == user.id)} onClick={() => {
+                                props.setToggleIsFollowingProgress(true, user.id)
                                 axios.post(`https://social-network.samuraijs.com/api/1.0/follow/${user.id}`, {}, {withCredentials: true})
                                     .then(response => {
                                         if (response.data.resultCode === 0) {
                                             props.follow(user.id)
                                         }
+                                        props.setToggleIsFollowingProgress(false, user.id)
                                     })
                             }}>Follow</button>}
                     </div>
