@@ -11,6 +11,7 @@ import DialogsContainer from "./components/dialogs/DialogsContainer";
 import UsersContainer from "./components/users/UsersContainer";
 import ProfileContainer from "./components/profile/ProfileContainer";
 import HeaderContainer from "./components/header/HeaderContainer";
+import LoginPage from "./components/login/Login";
 
 const App = () => {
     return (
@@ -25,6 +26,7 @@ const App = () => {
                     <Route path={"/friends"} element={<Friends/>}/>
                     <Route path={"/settings"} element={<Settings/>}/>
                     <Route path={"/users"} element={<UsersContainer/>}/>
+                    <Route path={"/login"} element={<LoginPage/>}/>
                 </Routes>
             </AppWrapperStyled>
 

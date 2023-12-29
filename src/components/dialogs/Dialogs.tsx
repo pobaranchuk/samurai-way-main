@@ -8,6 +8,7 @@ import {InputStyled} from "../profile/ProfileStyled";
 import {Button} from "../buttons/ButtonStyled";
 import {DialogsPropsType} from "./DialogsContainer";
 import {DialogsType, MessagesType} from "../../redux/dialog-reducer";
+import { Navigate } from "react-router-dom";
 
 export type DialogItemType = {
     dialog: DialogsType
@@ -28,33 +29,33 @@ const MessageItem: React.FC<MessageItemType> = ({message}) => {
     )
 }
 
-const Dialogs: React.FC<DialogsPropsType> = ({dialogsPage, sendMessage, updateNewMessageBody}) => {
+const Dialogs: React.FC<DialogsPropsType> = (props: DialogsPropsType) => {
 
-    let state = dialogsPage
-
-    const dialogElement = state.dialogs.map(dialog => <DialogItem key={dialog.id} dialog={dialog}/>)
-    const messagesElement = state.messages.map(message => <MessageItem key={message.id} message={message}/>)
+    const dialogElement = props.dialogsPage.dialogs.map(dialog => <DialogItem key={dialog.id} dialog={dialog}/>)
+    const messagesElement = props.dialogsPage.messages.map(message => <MessageItem key={message.id} message={message}/>)
 
     const onSendMessageClick = () => {
-        sendMessage()
+        props.sendMessage()
     }
 
     const onNewMessageChange = (e: ChangeEvent<HTMLInputElement>) => {
         let body = e.currentTarget.value
-        updateNewMessageBody(body)
+        props.updateNewMessageBody(body)
     }
+
+    if(!props.isAuth) return <Navigate to={"/login"} replace={true}/>
 
     return (
         <MenuDialogsStyled>
             <DialogsStyled>{dialogElement}</DialogsStyled>
             <MessagesStyled>
                 {messagesElement}
-                <InputStyled value={state.newMessageBody} onChange={onNewMessageChange}/>
+                <InputStyled value={props.dialogsPage.newMessageBody} onChange={onNewMessageChange}/>
                 <Button onClick={onSendMessageClick}>Send Message</Button>
             </MessagesStyled>
 
         </MenuDialogsStyled>
-    );
-};
+    )
+}
 
 export default Dialogs;

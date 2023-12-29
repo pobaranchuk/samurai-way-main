@@ -1,19 +1,24 @@
 import React, {ComponentType} from 'react';
 import {Profile} from "./Profile";
-import axios from "axios";
 import {connect} from "react-redux";
-import {setUserProfile, UserProfileType} from "../../redux/profile-reducer";
+import {getUserProfile, UserProfileType} from "../../redux/profile-reducer";
 import {AppRootStateType} from "../../redux/redux-store";
-import { useParams} from 'react-router-dom';
+import {Navigate, useParams} from 'react-router-dom';
 
 type mapStateToPropsType = {
     profile: UserProfileType
+    isAuth: boolean
 }
 
 type mapDispatchToPropsType = {
-    setUserProfile: (profile: UserProfileType) => void
+    getUserProfile: (userId: string) => void
 }
-const mapStateToProps = (state: AppRootStateType) => ({profile: state.profilePage.profile})
+const mapStateToProps = (state: AppRootStateType) => {
+    return {
+        profile: state.profilePage.profile,
+        isAuth: state.auth.isAuth
+    }
+}
 
 export type ProfilePropsType = mapStateToPropsType & mapDispatchToPropsType & {id?:string}
 
@@ -21,12 +26,10 @@ export type ProfilePropsType = mapStateToPropsType & mapDispatchToPropsType & {i
 class ProfileContainer extends React.Component<ProfilePropsType, any> {
     componentDidMount() {
         let userId = this.props.id || "1"
-        axios.get<UserProfileType>(`https://social-network.samuraijs.com/api/1.0/profile/${userId}`)
-            .then(response => {
-                this.props.setUserProfile(response.data)
-            })
+        this.props.getUserProfile(userId)
     }
     render() {
+        if(!this.props.isAuth) return <Navigate to={"/login"} replace={true}/>
         return (
             <Profile profile={this.props.profile}/>
         )
@@ -43,4 +46,4 @@ export const withRouter = <T, >(Component: ComponentType<T>) => {
 
 const WithURLDataContainerComponent = withRouter(ProfileContainer)
 
-export default connect(mapStateToProps, {setUserProfile})(WithURLDataContainerComponent)
+export default connect(mapStateToProps, {getUserProfile})(WithURLDataContainerComponent)
