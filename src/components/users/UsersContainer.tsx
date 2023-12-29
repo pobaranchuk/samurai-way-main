@@ -8,6 +8,7 @@ import React from "react";
 import Users from "./Users";
 import Preloader from "../common/preloader/Preloader";
 import {Dispatch} from "redux";
+import {withRedirectHOC} from "../../hoc/WithAuthRedirect";
 
 type mapStateToPropsType = {
     usersPage: InitialUsersStateType
@@ -26,29 +27,6 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
         usersPage: state.usersPage
     }
 }
-
-// const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
-//     return {
-//         follow: (userId: number) => {
-//             dispatch(followActionCreator(userId))
-//         },
-//         unfollow: (userId: number) => {
-//             dispatch(unfollowActionCreator(userId))
-//         },
-//         setUsers: (users: UsersType[]) => {
-//             dispatch(setUsersActionCreator(users))
-//         },
-//         setCurrentPage: (currentPage: number) => {
-//             dispatch(setCurrentPageActionCreator(currentPage))
-//         },
-//         setTotalUsersCount: (totalCount: number) => {
-//             dispatch(setTotalUsersCountActionCreator(totalCount))
-//         },
-//         toggleIsFetching: (isFetching: boolean) => {
-//             dispatch(setIsFetchingActionCreator(isFetching))
-//         }
-//     }
-// }
 
 export type UsersPropsType = mapStateToPropsType & mapDispatchToPropsType
 
@@ -74,7 +52,11 @@ class UsersContainer extends React.Component<UsersPropsType, any> {
     }
 }
 
+const withRedirect = withRedirectHOC(UsersContainer)
+
 export default connect(mapStateToProps, {
     follow, unfollow, setCurrentPage, setToggleIsFollowingProgress,
     getUsers
-})(UsersContainer);
+})(withRedirect);
+
+//TODO Классовые компоненты, вспомнить особенности

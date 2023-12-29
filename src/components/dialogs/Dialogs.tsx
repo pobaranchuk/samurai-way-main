@@ -43,8 +43,6 @@ const Dialogs: React.FC<DialogsPropsType> = (props: DialogsPropsType) => {
         props.updateNewMessageBody(body)
     }
 
-    if(!props.isAuth) return <Navigate to={"/login"} replace={true}/>
-
     return (
         <MenuDialogsStyled>
             <DialogsStyled>{dialogElement}</DialogsStyled>

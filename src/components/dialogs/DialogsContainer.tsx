@@ -3,6 +3,7 @@ import {AppRootStateType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
 import {Dispatch} from "redux";
+import {withRedirectHOC} from "../../hoc/WithAuthRedirect";
 
 type mapStateToPropsType = {
     dialogsPage: InitialDialogStateType
@@ -33,7 +34,10 @@ const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
         }
     }
 }
+
+const AuthRedirectComponent = withRedirectHOC<DialogsPropsType>(Dialogs)
+
 // настраиваем коннект этими двумя функциями
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(Dialogs) //вызываем функцию которую возращает коннект
+const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent) //вызываем функцию которую возращает коннект
 
 export default DialogsContainer;
