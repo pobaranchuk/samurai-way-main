@@ -3,13 +3,14 @@ import {ProfileInfoStyled} from "./ProfileInfoStyled";
 import {UserProfileType} from "../../../redux/profile-reducer";
 import Preloader from "../../common/preloader/Preloader";
 import ProfileStatus from "./ProfileStatus";
+import {ProfilePropsType} from "../ProfileContainer";
 
 type ProfileInfoType = {
     profileInfo: UserProfileType
-}
+} & Partial<ProfilePropsType>
 
 export const ProfileInfo = (props: ProfileInfoType) => {
-    if(!props.profileInfo){
+    if (!props.profileInfo) {
         return <Preloader/>
     }
     return (
@@ -22,7 +23,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 {props.profileInfo.fullName}
                 {props.profileInfo.lookingForAJob}
                 {props.profileInfo.lookingForAJobDescription}
-                <ProfileStatus status={"hello"}/>
+                <ProfileStatus updateUserStatus={props.updateUserStatus} status={props.status}/>
             </div>
         </ProfileInfoStyled>
     );
