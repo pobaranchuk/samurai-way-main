@@ -49,5 +49,5 @@ export const withRouter = <T, >(Component: ComponentType<T>) => {
 export default compose<React.ComponentType>(
     connect(mapStateToProps, {getUserProfile}),
     withRouter,
-    withRedirectRedirectHOC
+    // withRedirectRedirectHOC
 )(ProfileContainer)

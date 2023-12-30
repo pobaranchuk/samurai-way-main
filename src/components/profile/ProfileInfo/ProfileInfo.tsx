@@ -2,6 +2,7 @@ import React from 'react';
 import {ProfileInfoStyled} from "./ProfileInfoStyled";
 import {UserProfileType} from "../../../redux/profile-reducer";
 import Preloader from "../../common/preloader/Preloader";
+import ProfileStatus from "./ProfileStatus";
 
 type ProfileInfoType = {
     profileInfo: UserProfileType
@@ -21,6 +22,7 @@ export const ProfileInfo = (props: ProfileInfoType) => {
                 {props.profileInfo.fullName}
                 {props.profileInfo.lookingForAJob}
                 {props.profileInfo.lookingForAJobDescription}
+                <ProfileStatus status={"hello"}/>
             </div>
         </ProfileInfoStyled>
     );
