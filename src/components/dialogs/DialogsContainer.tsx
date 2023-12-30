@@ -2,8 +2,8 @@ import {InitialDialogStateType, SendMessageCreator, UpdateNewMessageBodyCreator}
 import {AppRootStateType} from "../../redux/redux-store";
 import Dialogs from "./Dialogs";
 import {connect} from "react-redux";
-import {Dispatch} from "redux";
-import {withRedirectHOC} from "../../hoc/WithAuthRedirect";
+import {compose, Dispatch} from "redux";
+import {withRedirectRedirectHOC} from "../../hoc/WithAuthRedirect";
 
 type mapStateToPropsType = {
     dialogsPage: InitialDialogStateType
@@ -26,18 +26,16 @@ const mapStateToProps = (state: AppRootStateType): mapStateToPropsType => {
 
 const mapDispatchToProps = (dispatch: Dispatch): mapDispatchToPropsType => {
     return {
-        updateNewMessageBody: (body: string) => {
-            dispatch(UpdateNewMessageBodyCreator(body))
-        },
         sendMessage: () => {
             dispatch(SendMessageCreator())
+        },
+        updateNewMessageBody: (body: string) => {
+            dispatch(UpdateNewMessageBodyCreator(body))
         }
     }
 }
 
-const AuthRedirectComponent = withRedirectHOC<DialogsPropsType>(Dialogs)
-
-// настраиваем коннект этими двумя функциями
-const DialogsContainer = connect(mapStateToProps, mapDispatchToProps)(AuthRedirectComponent) //вызываем функцию которую возращает коннект
-
-export default DialogsContainer;
+export default compose(
+    connect(mapStateToProps, mapDispatchToProps),
+    withRedirectRedirectHOC
+)(Dialogs)
