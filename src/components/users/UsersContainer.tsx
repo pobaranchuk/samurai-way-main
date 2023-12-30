@@ -52,7 +52,7 @@ class UsersContainer extends React.Component<UsersPropsType, any> {
     }
 }
 
-export default compose(
+export default compose<React.ComponentType>(
     withRedirectRedirectHOC,
     connect(mapStateToProps, {follow, unfollow, setCurrentPage, setToggleIsFollowingProgress, getUsers})
 )(UsersContainer)
