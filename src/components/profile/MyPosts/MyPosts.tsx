@@ -1,33 +1,41 @@
-import React, {ChangeEvent} from 'react';
+import React from 'react';
 import {Button} from "../../buttons/ButtonStyled";
 import {Post} from "./Post/Post";
-import {InputStyled} from "../ProfileStyled";
 import {PostsStyled} from "./PostsStyled";
 import {ProfilePropsType} from "./MyPostsContainer";
+import {Field, reduxForm} from "redux-form";
 
 
-export const MyPosts: React.FC<ProfilePropsType> = ({profilePage, updateNewPostText, addPost}) => {
+export const MyPosts: React.FC<ProfilePropsType> = ({profilePage, addPost}) => {
 
     const posts = profilePage.posts
     const postElement = posts.map(post =>
         <Post key={post.id} id={post.id} postbody={post.postbody} likesCount={post.likesCount}/>)
 
-    const onPostChange = (e: ChangeEvent<HTMLInputElement>) => {
-        let text = e.currentTarget.value
-        updateNewPostText(text)
-    }
-
-    const onAddPost = () => {
-        addPost()
+    const onAddPost = (values: any) => {
+        addPost(values.newPostText)
     }
 
     return (
         <PostsStyled>
-            <InputStyled value={profilePage.newPostText} onChange={onPostChange}/>
-            <Button onClick={onAddPost}>Add post</Button>
+            <h3>My Posts</h3>
+            <AddNewPostFormRedux onSubmit={onAddPost}/>
             {postElement}
         </PostsStyled>
     );
 };
+
+const AddNewPostForm = (props: any) => {
+    return (
+        <div>
+            <form onSubmit={props.handleSubmit}>
+                <Field component={"textarea"} name={"newPostText"}/>
+                <Button>Add post</Button>
+            </form>
+        </div>
+    );
+};
+
+const AddNewPostFormRedux = reduxForm({form: "AddNewPostForm"})(AddNewPostForm)
 
 export default MyPosts;

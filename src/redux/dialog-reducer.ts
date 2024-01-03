@@ -1,14 +1,8 @@
 import {v1} from "uuid";
-
-export const UpdateNewMessageBodyCreator = (newText: string) => {
+export const SendMessageCreator = (newMessageBody: string) => {
     return {
-        type: "UPDATE-NEW-MESSAGE-BODY",
-        body: newText
-    } as const
-}
-export const SendMessageCreator = () => {
-    return {
-        type: "SEND-MESSAGE"
+        type: "SEND-MESSAGE",
+        newMessageBody
     } as const
 }
 
@@ -37,30 +31,20 @@ let initialState = {
         {id: v1(), message: "Yo how are you"},
         {id: v1(), message: "Yo how are you"},
         {id: v1(), message: "Yo how are you"}
-    ] as MessagesType[],
-    newMessageBody: ""
+    ] as MessagesType[]
 }
 
 export type InitialDialogStateType = typeof initialState
 
-type ActionsTypes =
-    | ReturnType<typeof UpdateNewMessageBodyCreator>
-    | ReturnType<typeof SendMessageCreator>
+type ActionsTypes = | ReturnType<typeof SendMessageCreator>
 
 export const DialogReducer = (state: InitialDialogStateType = initialState, action: ActionsTypes): InitialDialogStateType => {
 
     switch (action.type) {
-        case "UPDATE-NEW-MESSAGE-BODY":
-            return {
-                ...state,
-                newMessageBody: action.body
-            }
-
         case "SEND-MESSAGE":
-            let body = state.newMessageBody
+            let body = action.newMessageBody
             return {
                 ...state,
-                newMessageBody: "",
                 messages: [...state.messages, {id: v1(), message: body}]
             }
         default:
