@@ -4,6 +4,8 @@ import {Post} from "./Post/Post";
 import {PostsStyled} from "./PostsStyled";
 import {ProfilePropsType} from "./MyPostsContainer";
 import {Field, reduxForm} from "redux-form";
+import {maxLengthCreator, required} from "../../../utils/validators/validator";
+import {Textarea} from "../../common/formsControls/formsControl";
 
 
 export const MyPosts: React.FC<ProfilePropsType> = ({profilePage, addPost}) => {
@@ -25,11 +27,15 @@ export const MyPosts: React.FC<ProfilePropsType> = ({profilePage, addPost}) => {
     );
 };
 
+const maxLength10 = maxLengthCreator(10)
+
 const AddNewPostForm = (props: any) => {
+
     return (
         <div>
             <form onSubmit={props.handleSubmit}>
-                <Field component={"textarea"} name={"newPostText"}/>
+                <Field component={Textarea} placeholder={"Post message"} name={"newPostText"}
+                       validate={[required, maxLength10]}/>
                 <Button>Add post</Button>
             </form>
         </div>
